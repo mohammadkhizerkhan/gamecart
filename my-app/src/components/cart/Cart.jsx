@@ -1,10 +1,42 @@
 import React from "react";
-import { accessories, controller, games, ps5,ps5_pink } from "../../assets";
+import { accessories, controller, games, ps5, ps5_white,ps5_pink } from "../../assets";
 function Cart() {
   return (
     <div>
       <div class="cart-container">
         <div class="cart-items-container">
+          <div class="cart-item card">
+            <div class="card-cont"></div>
+            <div class="card-img-body">
+              <div class="card-img-cont">
+                <img
+                  src={ps5_white}
+                  alt=""
+                  class="card-img-bd img-responsive"
+                />
+              </div>
+              <div class="card-body">
+                <header class="card-header">
+                  <h3>Dragonwar Red Gear Gaming Mouse</h3>
+                  <h4>
+                    $25 &nbsp <span class="text-strike">$30</span>
+                  </h4>
+                </header>
+                <div class="quantity-container">
+                  <h4>Quantity:</h4>
+                  <div class="quantity-input">
+                    <button class="quantity-btn">-</button>
+                    <span>8</span>
+                    <button class="quantity-btn">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-btn-container">
+              <button class="btn cart-btn btn-s">Move To Wishlist</button>
+              <button class="btn cart-btn btn-s">Remove From Cart</button>
+            </div>
+          </div>
           <div class="cart-item card">
             <div class="card-cont"></div>
             <div class="card-img-body">
