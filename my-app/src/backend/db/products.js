@@ -5,7 +5,6 @@ import {Logo,games,controller,accessories,xbox_series_x,ps5,ps4,ps3,nintendo,ps5
  * You can add products of your wish with different attributes
  * */
 
-console.log(ps5_pink)
 
 export const products = [
   {

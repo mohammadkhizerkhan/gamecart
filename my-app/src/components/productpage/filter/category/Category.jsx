@@ -1,40 +1,50 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { ACTION_TYPE } from "../../../../store/Actions";
+import { useFilter } from "../../../../store/data/FilterContext";
+// import {getUniqueValue} from "../../../../helper/helper"
 
 function Category() {
-    return (
-        <div>
-            <div class="filter-item filter-category">
-            <h3>Category</h3>
-            <label for="games" class="filter-label">
+  const { filterState, filterDispatch } = useFilter();
+  const {category}=filterState;
+  console.log(category)
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/categories");
+        setCategories((prev) => [...prev, ...response.data.categories]);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
+  return (
+    <div>
+      <div class="filter-item filter-category">
+        <h3>Category</h3>
+        {categories.map((item) => {
+          const {categoryName}=item;
+          return (
+            <label htmlFor={categoryName} class="filter-label">
               <input
                 type="checkbox"
                 name="category"
-                id="games"
+                id={categoryName}
                 class="filter-check"
+                value={categoryName.toUpperCase()}
+                onChange={() => filterDispatch({ type: ACTION_TYPE.CATEGORY,payload:categoryName })}
+                checked={category.includes(categoryName)}
               />
-              Games
+              {categoryName}
             </label>
-            <label for="consoles" class="filter-label">
-              <input
-                type="checkbox"
-                name="category"
-                id="consoles"
-                class="filter-check"
-              />
-              Consoles
-            </label>
-            <label for="accessories" class="filter-label">
-              <input
-                type="checkbox"
-                name="category"
-                id="accessories"
-                class="filter-check"
-              />
-              Accessories
-            </label>
-          </div>
-        </div>
-    )
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
-export default Category
+export default Category;
