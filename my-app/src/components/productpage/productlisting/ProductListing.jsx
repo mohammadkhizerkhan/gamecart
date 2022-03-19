@@ -7,7 +7,7 @@ import {Product} from "./Product.jsx"
 function ProductListing() {
   const { data } = useData();
   const {filterState} =useFilter();
-  const {sort,category}=filterState;
+  const {sort,category,range,rating}=filterState;
   console.log(filterState)
 
   const filterdData=()=>{
@@ -19,12 +19,17 @@ function ProductListing() {
     if(category.length>0){
       sortedProducts=sortedProducts.filter((item)=>category.includes(item.categoryName))
     }
+    if(range){
+      sortedProducts=sortedProducts.filter((item)=>Number(item.price)<=Number(range))
+    }
+    if(rating){
+      sortedProducts=sortedProducts.filter((item)=>Number(item.rating)>Number(rating))
+    }
     return sortedProducts;
   }
 
   console.log(filterdData())
   
-
   return (
     <div>
       <div class="product-container">

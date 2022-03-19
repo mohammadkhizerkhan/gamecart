@@ -1,31 +1,35 @@
-import React from 'react'
-
+import React from "react";
+import { ImStarFull } from "react-icons/im";
+import { ACTION_TYPE } from "../../../../store/Actions";
+import { useFilter } from "../../../../store/data/FilterContext";
 function Rating() {
-    return (
-        <div>
-            <div class="filter-item filter-rating">
-            <h3>Rating</h3>
-            <label for="priceLH" class="filter-label">
+  const {
+    filterState:{rate},
+    filterDispatch,
+  } = useFilter();
+
+  const ratings = [1, 2, 3, 4];
+  return (
+    <div>
+      <div class="filter-item filter-rating">
+        <h3>Rating</h3>
+        {ratings.map((value) => {
+          return (
+            <label class="filter-label">
               <input
                 type="radio"
-                name="category"
-                id="priceLH"
+                name="rate"
+                value={value}
                 class="filter-check"
+                onChange={(e)=>filterDispatch({type:ACTION_TYPE.RATE,payload:e.target.value})}
               />
-              price-Low to High
+              {value} <ImStarFull/> and above
             </label>
-            <label for="priceHL" class="filter-label">
-              <input
-                type="radio"
-                name="category"
-                id="priceHL"
-                class="filter-check"
-              />
-              price-High to Low
-            </label>
-          </div>
-        </div>
-    )
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
-export default Rating
+export default Rating;
