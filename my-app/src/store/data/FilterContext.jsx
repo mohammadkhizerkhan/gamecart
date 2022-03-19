@@ -1,11 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
 import { ProductReducer } from "../reducer/reducer";
 
+
+
 const FilterContext=createContext();
-
-
 const FilterProvider=({children})=>{
-
     const [filterState, filterDispatch] = useReducer(ProductReducer, {
         sort:"",
         category:[],

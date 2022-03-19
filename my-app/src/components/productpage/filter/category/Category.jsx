@@ -7,7 +7,7 @@ import { useFilter } from "../../../../store/data/FilterContext";
 function Category() {
   const { filterState, filterDispatch } = useFilter();
   const {category}=filterState;
-  console.log(category)
+  // console.log(category)
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
