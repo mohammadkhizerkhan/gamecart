@@ -22,4 +22,15 @@ const ProductReducer = (state, action) => {
   }
 };
 
+// const AuthReducer=(state,action)=>{
+//   switch (action.type) {
+//     case value:
+      
+//       break;
+  
+//     default:
+//       break;
+//   }
+// }
+
 export { ProductReducer };

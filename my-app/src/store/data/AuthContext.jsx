@@ -1,5 +1,7 @@
-import { createContext, useContext, useState } from "react";
-import {loginService} from '../../services/AuthServices'
+import { createContext, useContext, useState,useReducer } from "react";
+import {loginService,signUpService} from '../../services/AuthServices'
+
+// import { AuthReducer } from "../reducer/reducer";
 
 const AuthContext=createContext();
 
@@ -8,24 +10,56 @@ const AuthProvider=({children})=>{
     const localUser=JSON.parse(localStorage.getItem("user"))
     const [token,setToken]=useState(localToken?.token)
     const [user,setUser]=useState(localUser?.user)
+    const [error,setError]=useState("");
 
     const login=async (email,password)=>{
         if(email && password !== ""){
             try {
-                const {status,data:{encodedToken,foundUser}}=await loginService(email,password);
+                const response=await loginService(email,password);
+                const {status,data:{encodedToken,foundUser}}=response;
+                // console.log(encodedToken,foundUser)
+                // console.log(response.data)
                 if(status===200){
                     localStorage.setItem("login",JSON.stringify({token:encodedToken}))
                     localStorage.setItem("user",JSON.stringify({token:foundUser}))
                     setToken(encodedToken)
                     setUser(foundUser)
                 }
-            } catch (error) {
-                console.log("error in login",error)
+            } catch (err) {
+                console.log("error in login",err)
+                setError(err);
+                
             }
         }
     }
+    const signup=async (signUpData)=>{
+     
+            try {
+                const response=await signUpService(signUpData);
+                const {status,data:{encodedToken,createdUser}}=response;
+                console.log(encodedToken,createdUser)
+                console.log(response.data)
+                if(status===201){
+                    localStorage.setItem("login",JSON.stringify({token:encodedToken}))
+                    localStorage.setItem("user",JSON.stringify({token:createdUser}))
+                    setToken(encodedToken)
+                    setUser(createdUser)
+                }
+            } catch (err) {
+                console.log("error in login",err)
+                setError(err);
+            }
+        
+    }
+
+    // const [authState, authDispatch] = useReducer(AuthReducer, {
+    //     userInfo:user,
+    //     userToken:token,
+    //     error:error
+    // })
+
     return(
-        <AuthContext.Provider value={{token,login}}>
+        <AuthContext.Provider value={{token,login,signup,user,setToken,setUser}}>
             {children}
         </AuthContext.Provider>
     )

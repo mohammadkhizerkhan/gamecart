@@ -1,6 +1,9 @@
 import React from "react";
-
+import {useAuth} from "../../../store/data/AuthContext"
+import {useNavigate} from 'react-router-dom'
 function Product({item}) {
+  const navigate=useNavigate();
+  const {token}=useAuth();
   const {
     id,
     title,
@@ -11,6 +14,22 @@ function Product({item}) {
     rating,
     categoryName,
   } = item;
+  const addCartHandler=(token,item)=>{
+    if(token){
+      navigate("/carts")
+    }
+    else{
+      navigate("/login")
+    }
+  }
+  const addWishlistHandler=(token,item)=>{
+    if(token){
+      navigate("/wishlist")
+    }
+    else{
+      navigate("/login")
+    }
+  }
   return (
     <div class="card card-product">
       <div class="card-img-body card-product-body">
@@ -35,8 +54,8 @@ function Product({item}) {
         </div>
       </div>
       <div class="card-btn-container">
-        <button class="btn product-btn btn-s">Add To Wishlist</button>
-        <button class="btn product-btn btn-s">Add To Cart</button>
+        <button class="btn product-btn btn-s" onClick={()=>addWishlistHandler(token,item)}>Add To Wishlist</button>
+        <button class="btn product-btn btn-s" onClick={()=>addCartHandler(token,item)}>Add To Cart</button>
       </div>
     </div>
   );

@@ -6,5 +6,14 @@ const loginService=(email,password)=>{
         password:password
     })
 }
+const signUpService=(signUpData)=>{
+    const {firstname,lastname,email,password}=signUpData;
+    return axios.post("/api/auth/signup",{
+        firstname:firstname,
+        lastname:lastname,
+        email:email,
+        password:password
+    })
+}
 
-export {loginService}
+export {loginService,signUpService}

@@ -32,3 +32,11 @@ export const users = [
 //   "email": "testGameCart@gmail.com",
 //      "password": "test123"
 //   }
+
+
+// {
+//   "firstName": "John",
+//   "lastName": "Doe",
+//   "email": "johndoe@gmail.com",
+//   "password":"1234"
+//   }

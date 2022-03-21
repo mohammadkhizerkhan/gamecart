@@ -1,34 +1,43 @@
-import {useState,useEffect} from 'react'
-import {useAuth} from "../../store/data/AuthContext"
+import { useState, useEffect } from "react";
+import { useAuth } from "../../store/data/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { CheckAccount } from "../../services/CheckAccount";
 
 function Login() {
-    const {login} =useAuth();
-    const [form, setform] = useState({
-        email:"",
-        password:""
-    })
-    const handleChange=(e)=>{
-        const name=e.target.name;
-        const value=e.target.value;
-        setform({...form,[name]:value})
+  const { login, token,setToken,user,setUser } = useAuth();
+  const navigate = useNavigate();
+  const [form, setform] = useState({
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setform({ ...form, [name]: value });
+  };
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setform((form) => ({
+      ...form,
+      email: "testGameCart@gmail.com",
+      password: "test123",
+    }));
+
+    
+    const isAccountPresent = CheckAccount(token);
+    if (isAccountPresent) {
+      navigate("/products");
     }
+  };
 
-    const loginHandler=(e)=>{
-        e.preventDefault();
-        setform(form=>({
-            ...form,
-            email:"testGameCart@gmail.com",
-            password:"test123"
-        }))
-    }
+  useEffect(() => {
+    login(form.email, form.password);
+  }, [form.email, form.password]);
 
-    useEffect(() => {
-        login(form.email,form.password)
-    }, [form.email,form.password])
-
-    return (
-        <div>
-        <div class="form-container">
+  return (
+    <div>
+      <div class="form-container">
         <h1 class="text-center">Login</h1>
         <form class="form">
             <label htmlFor="" class="input-label">
@@ -44,19 +53,19 @@ function Login() {
                 <span class="inputs-title">Remember me</span>
                 <span class="login-forgot-link"><a href="" >Forgot your Password?</a></span>
             </label>
-            {/* <label htmlFor="" class="input-label">
-                <input type="submit" class="btn btn-m formBtn" value="Login"/>
-            </label> */}
             <label htmlFor="" class="input-label text-center">
                 <button type='submit' href="" onClick={(e)=>loginHandler(e)} class="btn-link formBtn">Join with Test Credentials</button>
             </label>
-            {/* <label htmlFor="" class="input-label text-center">
-                <a href="/components/auth/signUp.html" class="btn-link formBtn">Create New Account</a>
-            </label> */}
+            <label htmlFor="" class="input-label text-center">
+                <button type='button' href="/components/auth/signUp.html" class="btn-link formBtn" onClick={()=>navigate('/signup')}>Create New Account</button>
+            </label>
+            <label htmlFor="" class="input-label text-center">
+                <button>login</button>
+            </label>
           </form>
-    </div>
         </div>
-    )
+    </div>
+  );
 }
 
-export default Login
+export default Login;
