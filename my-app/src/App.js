@@ -5,6 +5,8 @@ import ProductListing from "./components/productpage/productlisting/ProductListi
 import Navbar from "./containers/home/Navbar";
 import Cart from "./components/cart/Cart";
 import Wishlist from "./components/wishlist/Wishlist";
+import Login from './components/auth/Login'
+import Mockman from "mockman-js"
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/products" element={<ProductListing/>}/>
         <Route path="/carts" element={<Cart/>}/>
         <Route path="/wishlist" element={<Wishlist/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/mockman" element={<Mockman/>}/>
       </Routes>
     </div>
   );
