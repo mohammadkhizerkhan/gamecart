@@ -15,20 +15,10 @@ function Product({item}) {
     categoryName,
   } = item;
   const addCartHandler=(token,item)=>{
-    if(token){
-      navigate("/carts")
-    }
-    else{
-      navigate("/login")
-    }
+    token?navigate("/carts"):navigate("/login")
   }
   const addWishlistHandler=(token,item)=>{
-    if(token){
-      navigate("/wishlist")
-    }
-    else{
-      navigate("/login")
-    }
+    token?navigate("/wishlist"):navigate("/login") 
   }
   return (
     <div class="card card-product">

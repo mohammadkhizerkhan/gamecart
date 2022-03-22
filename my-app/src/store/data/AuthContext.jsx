@@ -26,7 +26,7 @@ const AuthProvider=({children})=>{
                     setUser(foundUser)
                 }
             } catch (err) {
-                console.log("error in login",err)
+                // console.log("error in login",err)
                 setError(err);
                 
             }
@@ -46,7 +46,7 @@ const AuthProvider=({children})=>{
                     setUser(createdUser)
                 }
             } catch (err) {
-                console.log("error in login",err)
+                // console.log("error in login",err)
                 setError(err);
             }
         

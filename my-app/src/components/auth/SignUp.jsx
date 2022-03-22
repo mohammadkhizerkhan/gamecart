@@ -30,9 +30,6 @@ function SignUp() {
         })
     }
 
-    // const isAccountPresent=()=>{
-    //     navigate("/login")
-    // }
 
     if(token){
         setTimeout(() => {
