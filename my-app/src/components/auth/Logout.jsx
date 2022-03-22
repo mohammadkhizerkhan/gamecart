@@ -3,10 +3,15 @@ import { useAuth } from "../../store/data/AuthContext";
 import { useNavigate } from "react-router-dom";
 function Logout() {
     const { login, token,setToken,user,setUser } = useAuth();
+    const navigate=useNavigate();
     const logOutHandler=(e)=>{
         e.preventDefault();
+        localStorage.removeItem("login");
+    localStorage.removeItem("user");
+    localStorage.removeItem("signup");
         setToken("");
         setUser()
+        navigate("/")
     }
     return (
         <div>

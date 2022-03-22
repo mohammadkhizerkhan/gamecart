@@ -1,9 +1,14 @@
 .form-container{
     width: 100%;
     max-width: 25%;
-    margin: 0 auto;
+    margin: 7rem auto;
     height: auto;
 }
+
+.form-container h1{
+    color: var(--text-color);
+}
+
 
 .checkbox-input{
   -ms-transform: scale(2); /* IE */
@@ -38,6 +43,8 @@
     margin: 5px 0;
     background-color: blue;
     color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .formBtn:hover{

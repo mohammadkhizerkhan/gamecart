@@ -38,7 +38,7 @@ function Login() {
   return (
     <div>
       <div class="form-container">
-        <h1 class="text-center">Login</h1>
+        <h1 class="text-center">LOGIN</h1>
         <form class="form">
             <label htmlFor="" class="input-label">
                 Email address:

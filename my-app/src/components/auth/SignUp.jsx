@@ -45,7 +45,7 @@ function SignUp() {
     return (
         <div>
         <div class="form-container">
-        <h1 class="text-center">Login</h1>
+        <h1 class="text-center">SIGNUP</h1>
         <form class="form">
             <label htmlFor="" class="input-label">
                 First name:
