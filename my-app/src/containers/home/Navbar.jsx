@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {Logo} from "../../assets"
+import {useAuth} from '../../store/data/AuthContext'
 
 function Navbar() {
+  const {token}=useAuth();
   return (
     
       <nav class="navbar-landing">
@@ -16,9 +18,8 @@ function Navbar() {
         <ul class="nav-ul">
           <li>
             <Link
-              to="wishlist"
+              to={token?"wishlist":"login"}
               class="link"
-              target="_blank"
             >
               <div class="badge-container">
                 <i class="fas fa-heart fa-icon"></i>
@@ -29,7 +30,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="carts" class="link" target="_blank">
+            <Link to={token?"carts":"login"} class="link" >
               <div class="badge-container">
                 <i class="fas fa-shopping-cart fa-icon"></i>
                 <div class="badge badge-large badge-right">
@@ -39,9 +40,9 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <a href="/components/auth/login.html" class="link" target="_blank">
+            <Link to={token?"logout":"signup"} class="link" target="_blank">
               <i class="fas fa-user fa-icon"></i>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

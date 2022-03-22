@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    /* margin: 0.5rem; */
+    margin-bottom: 10rem;
     padding: 0.5rem;
     position: fixed;
     top: 0;
@@ -187,4 +187,8 @@
 .social-icon{
     font-size: 4rem;
     color: var(--text-color);
+}
+
+.mockman{
+    margin-top: 8rem;
 }
