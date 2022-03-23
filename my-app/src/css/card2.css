@@ -8,7 +8,7 @@
 }
 
 .card:hover{
-    transform: scale(1.02);
+    transform: scale(1.015);
 }
 
 .card-img-body{
@@ -26,5 +26,6 @@
 
 .card-btn-container {
     height: 2.7rem;
+    flex-direction: column;
 }
 

@@ -8,7 +8,7 @@ function ProductListing() {
   const { data } = useData();
   const {filterState} =useFilter();
   const {sort,category,range,rating}=filterState;
-  console.log(filterState)
+  // console.log(filterState)
 
   const filterdData=()=>{
     let sortedProducts=[...data]
@@ -28,7 +28,7 @@ function ProductListing() {
     return sortedProducts;
   }
 
-  console.log(filterdData())
+  // console.log(filterdData())
   
   return (
     <div>

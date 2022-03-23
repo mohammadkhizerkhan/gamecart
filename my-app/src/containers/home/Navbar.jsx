@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {Logo} from "../../assets"
 import {useAuth} from '../../store/data/AuthContext'
-
+import {useCart} from "../../store/data/CartContext"
 function Navbar() {
   const {token}=useAuth();
+  const {cartState} =useCart();
   return (
     
       <nav class="navbar-landing">
@@ -34,7 +35,7 @@ function Navbar() {
               <div class="badge-container">
                 <i class="fas fa-shopping-cart fa-icon"></i>
                 <div class="badge badge-large badge-right">
-                  <span>0</span>
+                  <span>{cartState.cart.length}</span>
                 </div>
               </div>
             </Link>

@@ -33,6 +33,7 @@ export const getCartItemsHandler = function (schema, request) {
  * */
 
 export const addItemToCartHandler = function (schema, request) {
+  // console.log(request)
   const userId = requiresAuth.call(this, request);
   try {
     if (!userId) {

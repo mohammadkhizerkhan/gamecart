@@ -22,15 +22,22 @@ const ProductReducer = (state, action) => {
   }
 };
 
-// const AuthReducer=(state,action)=>{
-//   switch (action.type) {
-//     case value:
-      
-//       break;
-  
-//     default:
-//       break;
-//   }
-// }
+const CartReducer = (state, action) => {
+  switch (action.type) {
+    case ACTION_TYPE.ADD_TO_CART:
+      return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
+    case ACTION_TYPE.REMOVE_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((cart) => cart._id !== action.payload._id),
+      };
+    case ACTION_TYPE.DECR_QTY:
+      return {...state,cart:state.cart.filter(item=>item._id===action.payload._id?item.qty=action.payload.qty-1:item.qty)}   
+    case ACTION_TYPE.INCR_QTY:
+      return {...state,cart:state.cart.filter(item=>item._id===action.payload._id?item.qty=action.payload.qty+1:item.qty)}   
+    default:
+      return state;
+  }
+};
 
-export { ProductReducer };
+export { ProductReducer, CartReducer };

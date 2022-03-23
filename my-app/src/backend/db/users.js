@@ -40,3 +40,13 @@ export const users = [
 //   "email": "johndoe@gmail.com",
 //   "password":"1234"
 //   }
+
+// key:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI5MTBkZGIxNi01MDk5LTQ0NGItODkwYS1hYzlmY2ZiY2M2NDEiLCJlbWFpbCI6InRlc3RHYW1lQ2FydEBnbWFpbC5jb20ifQ.mLKPXJxTuiqRq7x3x073fSBYGH762NLQbHgg4rQXIZE
+
+// {"title": "NBA-2K22",
+//     "img":"nba2k22",
+//     "price": "5000",
+//     "original_price":"6500",
+//     "isPopular":"true",
+//     "rating":"4.7"
+// }
