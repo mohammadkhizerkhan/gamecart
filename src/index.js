@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import {BrowserRouter} from "react-router-dom";
-import "../../my-app/src/css/final.css"
+import "./css/final.css"
 import { DataProvider } from "./store/data/DataContext";
 import { FilterProvider } from "./store/data/FilterContext";
 import { AuthProvider } from "./store/data/AuthContext";
