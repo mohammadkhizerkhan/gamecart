@@ -13,12 +13,13 @@
 
 .card-wishlist{
     width: 230px;
+    height: 389px;
     border: none;
     box-shadow: var(--shadow-wishlist);
 }
 .wishlist-img-cont {
     width: 100%;
-    height: 10rem;
+    height: 15rem;
 }
 
 .img-responsive{
@@ -44,4 +45,9 @@
 
 .wishlist-btn:hover{
     border: 2px solid #e752fd;
+}
+
+
+.wishlist-footer{
+    flex-direction: column;
 }

@@ -40,4 +40,15 @@ const CartReducer = (state, action) => {
   }
 };
 
-export { ProductReducer, CartReducer };
+const WishlistReducer = (state, action) => {
+  switch (action.type) {
+    case ACTION_TYPE.ADD_TO_WISHLIST:
+      return {...state,wishlist:[...state.wishlist,{...action.payload}]}
+    case ACTION_TYPE.REMOVE_FROM_WISHLIST:
+      return {...state,wishlist:state.wishlist.filter((wishlist)=>wishlist._id!==action.payload._id)}
+    default:
+      return state;
+  }
+};
+
+export { ProductReducer, CartReducer,WishlistReducer };
