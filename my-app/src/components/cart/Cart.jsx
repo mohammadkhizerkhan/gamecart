@@ -4,14 +4,24 @@ import {useNavigate} from 'react-router-dom'
 import { ACTION_TYPE } from "../../store/Actions";
 import {useAuth} from "../../store/data/AuthContext"
 import {updateCartHandler} from "../../services/CartServices"
+import { calculateTotalSummary, calculateDiscount } from "../../services/PriceServices";
 
 
 function Cart() {
   const navigate=useNavigate();
   const {cartState,cartDispatch}=useCart();
   const {token} =useAuth();
-  const [total,setTotal]=useState(0)
-  // console.log(cartState.cart)
+
+  // const [total,setTotal]=useState(0)
+  // const [totalDeliveryCharge,setTotalDeliveryCharge]=useState(0)
+
+  const [totalSummary,setTotalSummary]=useState({
+    totalOriginalPrice:0,
+    totalDiscount:0,
+    totalDeliveryCharge:0,
+    totalAmount:0,
+    totalSavedAmount:0
+  })
 
   const cartHandler=(item,type)=>{
     if(token){
@@ -20,10 +30,17 @@ function Cart() {
   }
   
 
+  // useEffect(() => {
+  //   console.log(cartState.cart)
+  //   setTotal(cartState.cart.reduce((acc,cur)=>acc+Number(cur.price)*Number(cur.qty),0))
+  // }, [cartState.cart])
+
+
   useEffect(() => {
-    console.log(cartState.cart)
-    setTotal(cartState.cart.reduce((acc,cur)=>acc+Number(cur.price)*Number(cur.qty),0))
+    const data=calculateTotalSummary(cartState.cart)
+    setTotalSummary(data)
   }, [cartState.cart])
+  
 
 
   return (
@@ -32,7 +49,7 @@ function Cart() {
         <div class="cart-items-container">
           {cartState.cart.length>0?(
             cartState.cart.map((cartItem) => {
-              const {_id,img,original_price,price,qty,title}=cartItem;
+              const {_id,img,original_price,price,qty,title,deliveryCharge}=cartItem;
               return (
                 <div class="cart-item card">
                   <div class="card-cont"></div>
@@ -48,8 +65,9 @@ function Cart() {
                       <header class="card-header">
                         <h3>{title}</h3>
                         <h4>
-                        &#8377; {price} &nbsp; <span class="text-strike">${original_price}</span>
+                        &#8377; {price} &nbsp; <span class="text-strike"> &#8377;({original_price})</span> &nbsp; <span>({Math.trunc(calculateDiscount(price,original_price))}%)</span>
                         </h4>
+                        <h6 className="text-left">{deliveryCharge?"Not Eligible For Free Delivery":"Eligible For Free Delivery"}</h6>
                       </header>
                       <div class="quantity-container">
                         <h4>Quantity:</h4>
@@ -83,24 +101,24 @@ function Cart() {
           <div class="charges">
             <div class="price charges-amt">
               <p>Price(2 items)</p>
-              <h3>&#8377;20</h3>
+              <h3>&#8377;{totalSummary.totalOriginalPrice}</h3>
             </div>
             <div class="discount charges-amt">
               <p>Discount</p>
-              <h3>-&#8377;5</h3>
+              <h3>-&#8377;{totalSummary.totalDiscount}</h3>
             </div>
             <div class="Delivery charges-amt">
               <p>Delivery Charges</p>
-              <h3>&#8377;10</h3>
+              <h3>&#8377;{totalSummary.totalDeliveryCharge}</h3>
             </div>
           </div>
           <div class="divider-line"></div>
           <div class="total charges-amt">
             <h3>TOTAL AMOUNT</h3>
-            <h2>&#8377;{total}</h2>
+            <h2>&#8377;{totalSummary.totalAmount}</h2>
           </div>
           <div class="divider-line"></div>
-          <p>You will save $5 on this order</p>
+          <p>You will save &#8377; {totalSummary.totalSavedAmount} on this order</p>
           <button class="btn cart-btn btn-s">PLACE ORDER</button>
         </div>
       </div>

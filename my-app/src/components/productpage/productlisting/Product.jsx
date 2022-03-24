@@ -3,6 +3,7 @@ import {useAuth} from "../../../store/data/AuthContext"
 import {useNavigate} from 'react-router-dom'
 import {useCart} from "../../../store/data/CartContext"
 import { addToCart,removeFromCart } from "../../../services/CartServices";
+import { calculateDiscount } from "../../../services/PriceServices";
 
 function Product({item}) {
   const navigate=useNavigate();
@@ -67,8 +68,8 @@ function Product({item}) {
             </div>
             <div class="price-container">
               <h3>
-                PRICE: {price}
-                <span class="text-strike">{original_price}</span>
+                PRICE: {price} &nbsp;
+                <span>({Math.trunc(calculateDiscount(price,original_price))}%)</span>
               </h3>
             </div>
           </header>
