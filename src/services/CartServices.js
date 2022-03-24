@@ -22,6 +22,7 @@ const addToCart = async (token, item,cartDispatch) => {
       console.log("error in add to cart",error)
   }
 };
+
 const removeFromCart = async (token, item,cartDispatch) => {
   try {
     const res = await axios.delete(
