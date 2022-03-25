@@ -34,6 +34,7 @@ const CartReducer = (state, action) => {
     case ACTION_TYPE.DECR_QTY:
       return {...state,cart:state.cart.filter(item=>item._id===action.payload._id?item.qty=action.payload.qty-1:item.qty)}   
     case ACTION_TYPE.INCR_QTY:
+      console.log("hi from ince")
       return {...state,cart:state.cart.filter(item=>item._id===action.payload._id?item.qty=action.payload.qty+1:item.qty)}   
     default:
       return state;

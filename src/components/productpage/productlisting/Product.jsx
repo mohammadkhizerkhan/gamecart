@@ -36,15 +36,15 @@ function Product({ item }) {
     }
   };
 
-  const removeCartHandler = () => {
-    if (token) {
-      // navigate("/carts")
-      removeFromCart(token, item, cartDispatch);
-    } else {
-      navigate("/login");
-    }
-    console.log("removed");
-  };
+  // const removeCartHandler = () => {
+  //   if (token) {
+  //     // navigate("/carts")
+  //     removeFromCart(token, item, cartDispatch);
+  //   } else {
+  //     navigate("/login");
+  //   }
+  //   console.log("removed");
+  // };
 
   const addWishlistHandler = () => {
     if (token) {
@@ -112,9 +112,9 @@ function Product({ item }) {
         {cartState.cart.some((cartItem) => cartItem._id === item._id) ? (
           <button
             class="btn product-btn btn-s"
-            onClick={() => removeCartHandler()}
+            onClick={() => navigate("/carts")}
           >
-            Remove From Cart
+            Go To Cart
           </button>
         ) : (
           <button

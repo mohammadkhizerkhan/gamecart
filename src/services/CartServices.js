@@ -1,4 +1,5 @@
 import axios from "axios";
+import Wishlist from "../components/wishlist/Wishlist";
 import { ACTION_TYPE } from "../store/Actions";
 import { useCart } from "../store/data/CartContext";
 
@@ -54,10 +55,10 @@ const updateCartHandler = async (token, item,actionType,cartDispatch) => {
           },
       }
     );
-    console.log(item)
+    console.log(actionType,item)
     cartDispatch({type:actionType,payload:item})
   } catch (error) {
-      console.log("error in remove from cart",error)
+      console.log("error in update from cart",error)
   }
 };
 

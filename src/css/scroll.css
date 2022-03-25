@@ -1,0 +1,22 @@
+
+
+::-webkit-scrollbar {
+    width: 0.7rem;
+    margin-top: 4rem;
+}
+
+::-webkit-scrollbar-track {
+    background:rgb(45 90 149 / 80%);;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2badec;
+    /* border: 0.15rem solid #2badec; */
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+/* ::-webkit-scrollbar-thumb:hover {
+    background-color: #2489bb;
+} */
