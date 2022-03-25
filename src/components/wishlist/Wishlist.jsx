@@ -5,8 +5,7 @@ import { useAuth } from "../../store/data/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ACTION_TYPE } from "../../store/Actions";
 import { removeFromWishlist } from "../../services/WishlistServices";
-import { addToCart,updateCartHandler } from "../../services/CartServices";
-
+import { addToCart, updateCartHandler } from "../../services/CartServices";
 
 function Wishlist() {
   const { wishlistState, wishlistDispatch } = useWishlist();
@@ -15,17 +14,15 @@ function Wishlist() {
   const navigate = useNavigate();
 
   const moveToCartHandler = (wishlistItem) => {
-
     // cartState.cart.some((cartItem)=>cartItem._id===wishlistItem._id)?(
     //   updateCartHandler(token, wishlistItem, ACTION_TYPE.INCR_QTY, cartDispatch)
     // ):(
     //   // console.log("hi from add")
     //   addToCart(token, wishlistItem, cartDispatch)
     //   );
-    addToCart(token, wishlistItem, cartDispatch)
+    addToCart(token, wishlistItem, cartDispatch);
     removeFromWishlist(token, wishlistItem, wishlistDispatch);
   };
-
 
   // console.log(wishlistState.Wishlist)
   return (
@@ -61,12 +58,22 @@ function Wishlist() {
                   >
                     Remove From Wishlist
                   </button>
+                  {
+                    cartState.cart.some((cartItem)=>cartItem._id===wishlistItem._id)?(
+                      <button
+                    class="btn wishlist-btn btn-s" disabled={true}
+                  >
+                    Already In Cart
+                  </button>
+                    ):( 
                   <button
                     class="btn wishlist-btn btn-s"
                     onClick={() => moveToCartHandler(wishlistItem)}
                   >
                     Move To Cart
                   </button>
+                      )
+                  }
                 </div>
               </div>
             );
