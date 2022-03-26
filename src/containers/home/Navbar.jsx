@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import {Logo} from "../../assets"
 import {useAuth} from '../../store/data/AuthContext'
 import {useCart} from "../../store/data/CartContext"
+import {useWishlist} from "../../store/data/WishlistContext"
 function Navbar() {
   const {token}=useAuth();
   const {cartState} =useCart();
+  const {wishlistState}=useWishlist();
   return (
     
       <nav class="navbar-landing">
@@ -25,7 +27,7 @@ function Navbar() {
               <div class="badge-container">
                 <i class="fas fa-heart fa-icon"></i>
                 <div class="badge badge-large badge-right">
-                  <span>0</span>
+                  <span>{wishlistState.wishlist.length}</span>
                 </div>
               </div>
             </Link>

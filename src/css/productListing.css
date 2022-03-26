@@ -94,6 +94,7 @@
     box-shadow: var(--shadow-cart);
     height: 439px;
 }
+
 .card-product:hover{
     box-shadow: var(--shadow-product-hover);
 }
