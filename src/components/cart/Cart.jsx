@@ -35,6 +35,10 @@ function Cart() {
     addToWishlist(token,cartItem,wishlistDispatch);
     removeFromCart(token,cartItem,cartDispatch);
   }
+  
+  const removeCartHandler=(cartItem)=>{
+    removeFromCart(token,cartItem,cartDispatch);
+  }
 
   useEffect(() => {
     const data = calculateTotalSummary(cartState.cart);
@@ -123,10 +127,7 @@ function Cart() {
                     <button
                       class="btn product-btn btn-s"
                       onClick={() =>
-                        cartDispatch({
-                          type: ACTION_TYPE.REMOVE_FROM_CART,
-                          payload: cartItem,
-                        })
+                        removeCartHandler(cartItem)
                       }
                     >
                       Remove From Cart
