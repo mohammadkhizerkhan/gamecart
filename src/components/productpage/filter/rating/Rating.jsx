@@ -8,7 +8,7 @@ function Rating() {
     filterDispatch,
   } = useFilter();
 
-  const ratings = [1, 2, 3, 4];
+  const ratings = [4, 3, 2, 1];
   return (
     <div>
       <div class="filter-item filter-rating">
