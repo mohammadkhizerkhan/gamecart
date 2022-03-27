@@ -81,6 +81,7 @@
 
 .primary-btn:hover{
     color: white;
+    
 }
 .secondary-btn{
     background-image:linear-gradient(to right,#0c8fd4,#df09c7);
@@ -128,6 +129,11 @@
     flex-direction: column;
     justify-content: flex-end;
     cursor: pointer;
+}
+
+.product:hover{
+    transform: scale(1.01);
+    transition: all 0.5s;
 }
 
 .games{

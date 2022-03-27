@@ -7,14 +7,14 @@
 
 ::-webkit-scrollbar-track {
     background:rgb(45 90 149 / 80%);;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #2badec;
     /* border: 0.15rem solid #2badec; */
     cursor: pointer;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
 }
 
 /* ::-webkit-scrollbar-thumb:hover {
