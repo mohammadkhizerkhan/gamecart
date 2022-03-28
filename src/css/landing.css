@@ -204,6 +204,8 @@
     height: auto;
     width: 100%;
     padding: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-brands{
