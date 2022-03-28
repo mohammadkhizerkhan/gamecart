@@ -198,3 +198,52 @@
 .mockman{
     margin-top: 8rem;
 }
+
+.footer{
+    background-color: rgb(156 156 158);;
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+}
+
+.footer-brands{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-icon{
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+}
+
+.small-brand-icon{
+    width: 80px;
+}
+
+.footer-details{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.footer-about-us{
+    width: 50ch;
+}
+
+.footer-social{
+    width: 15%;
+}
+
+.footer-social-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

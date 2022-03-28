@@ -107,7 +107,26 @@
 .card-product-img-cont{
     width: 100%;
     height: 16rem;
+    position: relative;
 }
+
+
+
+.offer-icon {
+    position: absolute;
+    color: #9ce7ff;
+    font-size: 2.8rem;
+}
+.offer-percentage {
+    position: absolute;
+    /* color: var(--text-color); */
+    color: black;
+    font-size: 12px;
+    top: 14px;
+    left: 12px;
+    font-weight: bold;
+}
+
 .card-header h3 span{
     color: gray;
 }

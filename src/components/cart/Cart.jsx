@@ -15,7 +15,7 @@ function Cart() {
   const navigate = useNavigate();
   const { cartState, cartDispatch } = useCart();
   const { token } = useAuth();
-  const {wishlistDispatch}=useWishlist();
+  const {wishlistState,wishlistDispatch}=useWishlist();
 
   const [totalSummary, setTotalSummary] = useState({
     totalOriginalPrice: 0,
@@ -123,7 +123,13 @@ function Cart() {
                     </div>
                   </div>
                   <div class="card-btn-container">
-                    <button class="btn cart-btn btn-s" onClick={()=>moveToWishlistHandler(cartItem)}>Move To Wishlist</button>
+                    {
+                      wishlistState.wishlist.some((wishlistItem)=>wishlistItem._id===cartItem._id)?(
+                        <button class="btn cart-btn btn-s" disabled={true}>Already In Wishlist</button>
+                      ):(
+                        <button class="btn cart-btn btn-s" onClick={()=>moveToWishlistHandler(cartItem)}>Move To Wishlist</button>
+                      )
+                  }
                     <button
                       class="btn product-btn btn-s"
                       onClick={() =>

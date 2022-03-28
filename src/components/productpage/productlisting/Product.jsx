@@ -1,4 +1,5 @@
 import React from "react";
+import { MdLocalOffer } from 'react-icons/md';
 import { useAuth } from "../../../store/data/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../store/data/CartContext";
@@ -36,15 +37,6 @@ function Product({ item }) {
     }
   };
 
-  // const removeCartHandler = () => {
-  //   if (token) {
-  //     // navigate("/carts")
-  //     removeFromCart(token, item, cartDispatch);
-  //   } else {
-  //     navigate("/login");
-  //   }
-  //   console.log("removed");
-  // };
 
   const addWishlistHandler = () => {
     if (token) {
@@ -68,6 +60,10 @@ function Product({ item }) {
     <div class="card card-product">
       <div class="card-img-body card-product-body">
         <div class="card-product-img-cont">
+          <MdLocalOffer className="offer-icon"/>
+          <span className="offer-percentage">
+                  {Math.trunc(calculateDiscount(price, original_price))}%
+          </span>
           <img src={img} alt="" class="card-img-bd img-responsive" />
         </div>
         <div class="card-body">
@@ -81,9 +77,7 @@ function Product({ item }) {
             <div class="price-container">
               <h3>
                 PRICE: {price} &nbsp;
-                <span>
-                  ({Math.trunc(calculateDiscount(price, original_price))}%)
-                </span>
+      
               </h3>
             </div>
           </header>
