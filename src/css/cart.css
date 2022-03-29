@@ -129,7 +129,6 @@
 
 
 
-
 .price-details{
     padding: 1rem;
     width: 50%;
@@ -138,6 +137,8 @@
     align-self: flex-start;
     border-radius: 4px;
     box-shadow: var(--shadow-cart);
+    position: sticky;
+    top: 120px;
 }
 
 .divider-line {
