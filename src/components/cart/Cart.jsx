@@ -15,7 +15,7 @@ function Cart() {
   const navigate = useNavigate();
   const { cartState, cartDispatch } = useCart();
   const { token } = useAuth();
-  const {wishlistState,wishlistDispatch}=useWishlist();
+  const { wishlistState, wishlistDispatch } = useWishlist();
 
   const [totalSummary, setTotalSummary] = useState({
     totalOriginalPrice: 0,
@@ -31,20 +31,19 @@ function Cart() {
     }
   };
 
-  const moveToWishlistHandler=(cartItem)=>{
-    addToWishlist(token,cartItem,wishlistDispatch);
-    removeFromCart(token,cartItem,cartDispatch);
-  }
-  
-  const removeCartHandler=(cartItem)=>{
-    removeFromCart(token,cartItem,cartDispatch);
-  }
+  const moveToWishlistHandler = (cartItem) => {
+    addToWishlist(token, cartItem, wishlistDispatch);
+    removeFromCart(token, cartItem, cartDispatch);
+  };
+
+  const removeCartHandler = (cartItem) => {
+    removeFromCart(token, cartItem, cartDispatch);
+  };
 
   useEffect(() => {
     const data = calculateTotalSummary(cartState.cart);
     setTotalSummary(data);
   }, [cartState.cart]);
-
 
   return (
     <div>
@@ -74,7 +73,11 @@ function Cart() {
                     </div>
                     <div class="card-body cart-body">
                       <header class="card-header">
-                        <h3>{title}</h3>
+                        <h3>
+                          {title.length >= 15
+                            ? `${title.substring(0, 13)}...`
+                            : title}
+                        </h3>
                         <h4>
                           &#8377; {price} &nbsp;{" "}
                           <span class="text-strike">
@@ -123,18 +126,23 @@ function Cart() {
                     </div>
                   </div>
                   <div class="card-btn-container">
-                    {
-                      wishlistState.wishlist.some((wishlistItem)=>wishlistItem._id===cartItem._id)?(
-                        <button class="btn cart-btn btn-s" disabled={true}>Already In Wishlist</button>
-                      ):(
-                        <button class="btn cart-btn btn-s" onClick={()=>moveToWishlistHandler(cartItem)}>Move To Wishlist</button>
-                      )
-                  }
+                    {wishlistState.wishlist.some(
+                      (wishlistItem) => wishlistItem._id === cartItem._id
+                    ) ? (
+                      <button class="btn cart-btn btn-s" disabled={true}>
+                        Already In Wishlist
+                      </button>
+                    ) : (
+                      <button
+                        class="btn cart-btn btn-s"
+                        onClick={() => moveToWishlistHandler(cartItem)}
+                      >
+                        Move To Wishlist
+                      </button>
+                    )}
                     <button
                       class="btn product-btn btn-s"
-                      onClick={() =>
-                        removeCartHandler(cartItem)
-                      }
+                      onClick={() => removeCartHandler(cartItem)}
                     >
                       Remove From Cart
                     </button>
@@ -156,34 +164,41 @@ function Cart() {
             </>
           )}
         </div>
-        <div class="price-details">
-          <h3 class="text-left">PRICE DETAILS</h3>
-          <div class="divider-line"></div>
-          <div class="charges">
-            <div class="price charges-amt">
-              <p>Price(2 items)</p>
-              <h3>&#8377;{totalSummary.totalOriginalPrice}</h3>
+        {cartState.cart.length > 0 && (
+          <>
+            <div class="price-details">
+              <h3 class="text-left">PRICE DETAILS</h3>
+              <div class="divider-line"></div>
+              <div class="charges">
+                <div class="price charges-amt">
+                  <p>Price(2 items)</p>
+                  <h3>&#8377;{totalSummary.totalOriginalPrice}</h3>
+                </div>
+                <div class="discount charges-amt">
+                  <p>Discount</p>
+                  <h3>-&#8377;{totalSummary.totalDiscount}</h3>
+                </div>
+                <div class="Delivery charges-amt">
+                  <p>Delivery Charges</p>
+                  <h3>&#8377;{totalSummary.totalDeliveryCharge}</h3>
+                </div>
+              </div>
+              <div class="divider-line"></div>
+              <div class="total charges-amt">
+                <h3>TOTAL AMOUNT</h3>
+                <h2>&#8377;{totalSummary.totalAmount}</h2>
+              </div>
+              <div class="divider-line"></div>
             </div>
-            <div class="discount charges-amt">
-              <p>Discount</p>
-              <h3>-&#8377;{totalSummary.totalDiscount}</h3>
+            <div className="checkout">
+              <p>
+                You will save &#8377; {totalSummary.totalSavedAmount} on this
+                order
+              </p>
+              <button class="btn cart-btn btn-s order-btn">PLACE ORDER</button>
             </div>
-            <div class="Delivery charges-amt">
-              <p>Delivery Charges</p>
-              <h3>&#8377;{totalSummary.totalDeliveryCharge}</h3>
-            </div>
-          </div>
-          <div class="divider-line"></div>
-          <div class="total charges-amt">
-            <h3>TOTAL AMOUNT</h3>
-            <h2>&#8377;{totalSummary.totalAmount}</h2>
-          </div>
-          <div class="divider-line"></div>
-          <p>
-            You will save &#8377; {totalSummary.totalSavedAmount} on this order
-          </p>
-          <button class="btn cart-btn btn-s">PLACE ORDER</button>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
