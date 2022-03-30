@@ -30,11 +30,11 @@
     height: 100%;
 }
 
-/* .logo{
-    width: 18%;
-    height: 150px;
+.logo{
+    width: 100%;
+    height: 80px;
     cursor: pointer;
-} */
+}
 
 .nav-ul{
     display: flex;
