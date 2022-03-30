@@ -60,6 +60,15 @@
 
 
 @media only screen and (max-width:675px){
+    .fa-icon {
+        font-size: 1.2rem;
+    }
+    .nav-ul{
+        width: 45%;
+    }
+    .logo-div{
+        width: 75%;
+    }
     .cart-items-container{
         width: 80%;
         margin: 0 auto;
@@ -73,6 +82,25 @@
     }
 }
 @media only screen and (max-width:575px){
+    .nav-ul{
+        width: 70%;
+    }
+    .logo-div{
+        width: 85%;
+    }
+    .logo{
+        width: 100%;
+        display: flex;
+    } 
+    .main{
+        height: 40vh;
+    }
+    .introduction h3{
+        font-size: 1.01rem;
+    }
+    .introduction h1{
+        font-size: 1.5rem;
+    }
     .cart-items-container{
         width: 100%;
         margin: 0 auto;
@@ -80,6 +108,47 @@
     .price-details{
         width: 100%;
         align-self: center;
+    }
+    .footer-social {
+        width: 51%;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .main{
+        width: 141vw;
+        margin: 0;
+    }
+    .products {
+        margin: 0 1rem;
+        width: 138vw;
+    }
+    .footer{
+        width: 145vw;
+        margin: 0;
+    }
+    .footer-details{
+        margin:0 2rem;
+    }
+    .introduction h3{
+        font-size: 14px;
+    }
+    .introduction h1{
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (max-width:350px){
+    .main{
+        width: 180vw;
+        margin: 0;
+    }
+    .footer{
+        width: 185vw;
+        margin: 0;
+    }
+    .footer-details{
+        margin:0 4rem;
     }
 }
 
