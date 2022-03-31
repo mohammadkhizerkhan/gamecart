@@ -32,13 +32,6 @@ function Body() {
                 <h1>Consoles</h1>
             </div>
         </section>
-        <h1 className="text-center">Connect us through social media</h1>
-        <section className="social-media">
-            <a href="#" className="link social-link" target="_blank"><i className="fab fa-facebook-f social-icon"></i></a>
-            <a href="#" className="link social-link" target="_blank"><i className="fab fa-twitter social-icon"></i></a>
-            <a href="#" className="link social-link" target="_blank"><i className="fab fa-instagram social-icon"></i></a>
-            <a href="#" className="link social-link" target="_blank"><i className="fab fa-youtube social-icon"></i></a>
-        </section>
     </div>
         </div>
     )

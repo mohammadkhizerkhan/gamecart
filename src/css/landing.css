@@ -16,6 +16,10 @@
     width: 100%;
     height: 90px;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .link{
     color: var(--text-color);
@@ -27,8 +31,8 @@
 }
 
 .logo{
-    width: 18%;
-    height: 150px;
+    width: 100%;
+    height: 80px;
     cursor: pointer;
 }
 
@@ -197,4 +201,56 @@
 
 .mockman{
     margin-top: 8rem;
+}
+
+.footer{
+    background-color: rgb(156 156 158);;
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-brands{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.brand-icon{
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+}
+
+.small-brand-icon{
+    width: 80px;
+}
+
+.footer-details{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.footer-about-us{
+    width: 50ch;
+}
+
+.footer-social{
+    width: 15%;
+}
+
+.footer-social-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

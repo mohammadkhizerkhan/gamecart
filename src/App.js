@@ -9,6 +9,7 @@ import Login from './components/auth/Login'
 import Mockman from "mockman-js"
 import SignUp from "./components/auth/SignUp";
 import Logout from "./components/auth/Logout";
+import Footer from "./containers/home/Footer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/mockman" element={<Mockman/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }

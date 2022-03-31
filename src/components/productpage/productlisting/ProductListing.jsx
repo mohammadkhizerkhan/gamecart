@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Category, FilterHeader, Range, Rating, SortBy } from "../filter";
 import { useData } from "../../../store/data/DataContext";
 import { useFilter } from "../../../store/data/FilterContext";
 import {Product} from "./Product.jsx"
+import { BsFilterLeft } from "react-icons/bs";
+// import {filterToggleHandler} from "../../../services/utils"
 
 function ProductListing() {
   const { data } = useData();
   const {filterState} =useFilter();
   const {sort,category,range,rating}=filterState;
-  // console.log(filterState)
-
+  const [showFilter,setShowFilter]=useState(false)
   const filterdData=()=>{
     let sortedProducts=[...data]
     
@@ -28,12 +29,17 @@ function ProductListing() {
     return sortedProducts;
   }
 
-  // console.log(filterdData())
+  const filterToggleHandler=()=>{
+    setShowFilter(!showFilter)
+  }
   
   return (
     <div>
       <div class="product-container">
-        <div class="filter-container">
+        <button  onClick={()=>filterToggleHandler()} className="btn btn-icon hammerBtn">
+        <BsFilterLeft />
+        </button>
+        <div class={`filter-container ${showFilter && "showMobileFilter"}`} >
           <FilterHeader />
           <SortBy />
           <Category />
@@ -41,6 +47,7 @@ function ProductListing() {
           <Rating />
         </div>
         <div class="product-items-container">
+        <div className={`modal-div ${showFilter && "drawer-modal-body"}`} onClick={()=>filterToggleHandler()}></div>
           <h1>
             Showing {filterdData().length} Products{"  "}
             

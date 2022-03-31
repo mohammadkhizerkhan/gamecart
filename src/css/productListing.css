@@ -1,17 +1,22 @@
 
-
 .product-container{
     display: flex;
     margin: 7rem 0 1rem 0;
 }
 
-.filter-container{
+/* .hammerIcon{
+    display: none;
+} */
+
+
+
+.filter-container {
     color: var(--text-color);
-    width: 250px;
+    width: 305px;
     padding: 1.4rem;
-    position: fixed;
-    left: 0;
-    height:100%;
+    position: sticky;
+    top: 80px;
+    height: 100%;
     overflow-y: auto;
     border-right: 1px solid rgba(41, 133, 255, 0.8);
 }
@@ -50,7 +55,6 @@
 .filter-category{
     display: flex;
     flex-direction: column;
-    
 }
 
 .filter-label{
@@ -69,7 +73,7 @@
 
 .product-items-container{
     width: 100%;
-    margin-left: 260px;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -107,7 +111,26 @@
 .card-product-img-cont{
     width: 100%;
     height: 16rem;
+    position: relative;
 }
+
+
+
+.offer-icon {
+    position: absolute;
+    color: #9ce7ff;
+    font-size: 2.8rem;
+}
+.offer-percentage {
+    position: absolute;
+    /* color: var(--text-color); */
+    color: black;
+    font-size: 12px;
+    top: 14px;
+    left: 12px;
+    font-weight: bold;
+}
+
 .card-header h3 span{
     color: gray;
 }
@@ -135,3 +158,12 @@
     border-right: 2px solid #2badec;
     letter-spacing: 3px;
 }
+
+.hammerBtn{
+    color: white;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    display: none;
+}
+
