@@ -55,7 +55,7 @@ function ProductListing() {
           <div class="product-items">
             {filterdData().map((item) => {
               return (
-               <Product item={item}/>
+               <Product item={item} key={item._id}/>
               );
             })}
           </div>

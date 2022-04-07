@@ -9,6 +9,7 @@ import {Logo,games,controller,accessories,xbox_series_x,ps5,ps4,ps3,nintendo,ps5
 export const products = [
   {
     _id: uuid(),
+    id:"Alan_Awake",
     title: "Alan Awake",
     img:alan_awake,
     price: "1000",
@@ -21,6 +22,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Among_Us",
     title: "Among Us",
     img:among_us,
     price: "500",
@@ -33,6 +35,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Apex_Legends",
     title: "Apex Legends",
     img:apex_legends,
     price: "4000",
@@ -45,6 +48,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Astro_bot_rescue_mission",
     title: "Astro bot rescue mission",
     img:astro_bot_rescue,
     price: "3000",
@@ -57,6 +61,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Blood_And_Truth",
     title: "Blood And Truth",
     img:blood_and_truth,
     price: "2500",
@@ -69,6 +74,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Farcry",
     title: "Farcry",
     img:farcry,
     price: "5000",
@@ -81,6 +87,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "God_Of_War",
     title: "God Of War",
     img:god_of_war,
     price: "6000",
@@ -93,6 +100,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Hitman-3",
     title: "Hitman-3",
     img:hitman3,
     price: "5000",
@@ -105,6 +113,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Kena",
     title: "Kena",
     img:kena,
     price: "2000",
@@ -117,6 +126,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "NBA-2K22",
     title: "NBA-2K22",
     img:nba2k22,
     price: "5000",
@@ -129,6 +139,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Resident_Evil",
     title: "Resident Evil",
     img:resident_evil,
     price: "7000",
@@ -141,6 +152,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Sifu",
     title: "Sifu",
     img:sifu,
     price: "2000",
@@ -153,6 +165,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Marvel's_Spider-Man",
     title: "Marvel's Spider-Man",
     img:spiderman,
     price: "8000",
@@ -165,6 +178,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "PS-3",
     title: "PS-3",
     img:ps3,
     price: "12000",
@@ -177,6 +191,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "PS-4",
     title: "PS-4",
     img:ps4,
     price: "15000",
@@ -189,6 +204,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "PS-5",
     title: "PS-5",
     img:ps5,
     price: "25000",
@@ -201,6 +217,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Xbox_Series_X",
     title: "Xbox Series X",
     img:xbox_series_x,
     price: "22000",
@@ -213,6 +230,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Nintendo_Switch",
     title: "Nintendo Switch",
     img:nintendo,
     price: "18000",
@@ -225,6 +243,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "White_PS5_Controller",
     title: "White PS5 Controller",
     img:ps5_white,
     price: "8000",
@@ -237,6 +256,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Pink_PS5_Controller",
     title: "Pink PS5 Controller",
     img:ps5_pink,
     price: "9000",
@@ -249,6 +269,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Light_Blue_PS5_Controller",
     title: "Light Blue PS5 Controller",
     img:ps5_skyblue,
     price: "8500",
@@ -261,6 +282,7 @@ export const products = [
   },
   {
     _id: uuid(),
+    id: "Dragon_Gaming_mouse",
     title: "Dragon Gaming mouse",
     img:mouse3,
     price: "2500",
