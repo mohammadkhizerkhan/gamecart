@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../store/data/DataContext";
@@ -21,55 +21,53 @@ function SingleProduct() {
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { token } = useAuth();
   const { productId } = useParams();
-
-  //   const { title, img, price, original_price, rating, desc } = product;
-
+  const [product,setProduct]=useState({
+    title:"", img:"", price:"", original_price:"", rating:0, desc:""
+  })
+  const { title, img, price, original_price, rating, desc,id } = product;
+  console.log(wishlistState.wishlist)
+  console.log(cartState.cart)
+  
   useEffect(() => {
-      (async ()=>{
-          try {
-              const {data}=await axios.get(`/api/products/:${productId}`)
-              console.log(data)
-          } catch (error) {
-              console.log("single page eroor",error)
-          }
-      })();
-    //   if(data.length){
-    //       console.log(data);
-    //       const product = data.find((item) => item.id === productId);
-    //       console.log(product.id);
-    //   }
-  }, [data]);
-
+    (async ()=>{
+      try {
+        const {data}=await axios.get(`/api/products/${productId}`)
+        setProduct(data.product)
+      } catch (error) {
+        console.log("single page eroor",error)
+      }
+    })();
+    
+  }, [productId]);
+  
+  
   const addCartHandler = () => {
     if (token) {
-      // navigate("/carts")
-      addToCart(token, item, cartDispatch);
+      addToCart(token, product, cartDispatch);
     } else {
       navigate("/login");
     }
   };
-
+  
   const addWishlistHandler = () => {
     if (token) {
-      // navigate("/wishlist")
-      addToWishlist(token, item, wishlistDispatch);
+      addToWishlist(token, product, wishlistDispatch);
     } else {
       navigate("/login");
     }
   };
-
+  
   const removeWishlistHandler = () => {
     if (token) {
-      // navigate("/wishlist")
-      removeFromWishlist(token, item, wishlistDispatch);
+      removeFromWishlist(token, product, wishlistDispatch);
     } else {
       navigate("/login");
     }
   };
-
+  
   return (
     <div className="single-product-cont">
-      {/* <div class="card card-product">
+      <div class="card card-product">
         <div class="card-img-body card-product-body">
           <div class="card-product-img-cont">
             <MdLocalOffer className="offer-icon" />
@@ -94,7 +92,7 @@ function SingleProduct() {
         </div>
         <div class="card-btn-container">
           {wishlistState.wishlist.some(
-            (wishlistItem) => wishlistItem._id === item._id
+            (wishlistItem) => wishlistItem.id === id
           ) ? (
             <button
               class="btn product-btn btn-s"
@@ -111,7 +109,7 @@ function SingleProduct() {
             </button>
           )}
 
-          {cartState.cart.some((cartItem) => cartItem._id === item._id) ? (
+          {cartState.cart.some((cartItem) => cartItem.id === id) ? (
             <button
               class="btn product-btn btn-s"
               onClick={() => navigate("/carts")}
@@ -127,7 +125,7 @@ function SingleProduct() {
             </button>
           )}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

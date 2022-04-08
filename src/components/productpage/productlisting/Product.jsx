@@ -16,7 +16,6 @@ function Product({ item }) {
   const { cartState, cartDispatch } = useCart();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { token } = useAuth();
-  console.log(wishlistState.wishlist)
   const {
     _id,
     id,
