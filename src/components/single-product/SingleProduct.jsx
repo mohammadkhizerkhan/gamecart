@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { useData } from "../../store/data/DataContext";
 import { MdLocalOffer } from "react-icons/md";
 import { useAuth } from "../../store/data/AuthContext";
@@ -32,8 +31,7 @@ function SingleProduct() {
   });
 
   const { title, img, price, original_price, rating, desc, id } = product;
-  // console.log(wishlistState.wishlist)
-  // console.log(cartState.cart)
+  
 
   useEffect(() => {
     (async () => {
