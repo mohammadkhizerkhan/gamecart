@@ -53,6 +53,7 @@ function Cart() {
             cartState.cart.map((cartItem) => {
               const {
                 _id,
+                id,
                 img,
                 original_price,
                 price,
@@ -64,7 +65,7 @@ function Cart() {
                 <div class="cart-item card">
                   <div class="card-cont"></div>
                   <div class="card-img-body cart-img-body">
-                    <div class="card-img-cont cart-img-cont">
+                    <div class="card-img-cont cart-img-cont" onClick={()=>navigate(`/product/${id}`)}>
                       <img
                         src={img}
                         alt=""
