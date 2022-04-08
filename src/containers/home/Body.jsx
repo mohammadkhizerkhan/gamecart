@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { ACTION_TYPE } from '../../store/Actions';
 import {useFilter} from "../../store/data/FilterContext"
@@ -10,6 +10,7 @@ function Body() {
         navigate("/products")
         filterDispatch({type:ACTION_TYPE.CATEGORY,payload:categoryName})
     }
+    
     return (
         <div>
             <div className="container">

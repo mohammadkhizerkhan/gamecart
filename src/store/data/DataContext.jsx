@@ -18,6 +18,8 @@ const DataProvider=({children})=>{
         })();
     }, [])
 
+    
+
     return (
         <DataContext.Provider value={{data:products}}>
             {children}

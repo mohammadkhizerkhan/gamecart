@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Category, FilterHeader, Range, Rating, SortBy } from "../filter";
 import { useData } from "../../../store/data/DataContext";
 import { useFilter } from "../../../store/data/FilterContext";
 import {Product} from "./Product.jsx"
 import { BsFilterLeft } from "react-icons/bs";
+import {ACTION_TYPE} from "../../../store/Actions"
 // import {filterToggleHandler} from "../../../services/utils"
 
 function ProductListing() {
   const { data } = useData();
-  const {filterState} =useFilter();
+  const {filterState,filterDispatch} =useFilter();
   const {sort,category,range,rating}=filterState;
   const [showFilter,setShowFilter]=useState(false)
   const filterdData=()=>{
@@ -32,6 +33,12 @@ function ProductListing() {
   const filterToggleHandler=()=>{
     setShowFilter(!showFilter)
   }
+
+  useEffect(() => {
+    return ()=>{
+        filterDispatch({type:ACTION_TYPE.RESET})
+    }
+}, [])
   
   return (
     <div>
@@ -55,7 +62,7 @@ function ProductListing() {
           <div class="product-items">
             {filterdData().map((item) => {
               return (
-               <Product item={item}/>
+               <Product item={item} key={item._id}/>
               );
             })}
           </div>

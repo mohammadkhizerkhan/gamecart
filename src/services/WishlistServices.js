@@ -19,6 +19,7 @@ const addToWishlist = async (token, item, wishlistDispatch) => {
       console.log("error from add to wishlist ",error)
   }
 };
+
 const removeFromWishlist = async (token, item, wishlistDispatch) => {
   try {
     const res = await axios.delete(

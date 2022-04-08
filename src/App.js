@@ -10,6 +10,7 @@ import Mockman from "mockman-js"
 import SignUp from "./components/auth/SignUp";
 import Logout from "./components/auth/Logout";
 import Footer from "./containers/home/Footer";
+import SingleProduct from "./components/single-product/SingleProduct";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/products" element={<ProductListing/>}/>
+        <Route path="/product/:productId" element={<SingleProduct/>}/>
         <Route path="/carts" element={<Cart/>}/>
         <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="/login" element={<Login/>}/>

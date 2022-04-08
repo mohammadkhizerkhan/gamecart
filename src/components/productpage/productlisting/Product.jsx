@@ -1,7 +1,7 @@
 import React from "react";
 import { MdLocalOffer } from 'react-icons/md';
 import { useAuth } from "../../../store/data/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../../store/data/CartContext";
 import { useWishlist } from "../../../store/data/WishlistContext";
 import { addToCart, removeFromCart } from "../../../services/CartServices";
@@ -16,9 +16,9 @@ function Product({ item }) {
   const { cartState, cartDispatch } = useCart();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { token } = useAuth();
-  console.log(wishlistState.wishlist)
   const {
     _id,
+    id,
     title,
     img,
     price,
@@ -32,6 +32,7 @@ function Product({ item }) {
     if (token) {
       // navigate("/carts")
       addToCart(token, item, cartDispatch);
+      console.log(token,"product")
     } else {
       navigate("/login");
     }
@@ -59,6 +60,7 @@ function Product({ item }) {
   return (
     <div class="card card-product">
       <div class="card-img-body card-product-body">
+        <Link to={`/product/${id}`}>
         <div class="card-product-img-cont">
           <MdLocalOffer className="offer-icon"/>
           <span className="offer-percentage">
@@ -66,6 +68,7 @@ function Product({ item }) {
           </span>
           <img src={img} alt="" class="card-img-bd img-responsive" />
         </div>
+        </Link>
         <div class="card-body">
           <header class="card-header">
             <h4 className="text-center">{title}</h4>
@@ -77,7 +80,6 @@ function Product({ item }) {
             <div class="price-container">
               <h3>
                 PRICE: {price} &nbsp;
-      
               </h3>
             </div>
           </header>
