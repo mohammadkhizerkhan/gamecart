@@ -10,11 +10,13 @@ import {ACTION_TYPE} from "../../../store/Actions"
 function ProductListing() {
   const { data } = useData();
   const {filterState,filterDispatch} =useFilter();
-  const {sort,category,range,rating}=filterState;
+  const {search,sort,category,range,rating}=filterState;
   const [showFilter,setShowFilter]=useState(false)
   const filterdData=()=>{
     let sortedProducts=[...data]
-    
+    if(search){
+      sortedProducts=sortedProducts.filter((item)=>item.title.toLowerCase().includes(search.toLowerCase()))
+    }
     if(sort){
      sortedProducts= sortedProducts.sort((a,b)=>sort === "HIGH_TO_LOW" ? Number(b.price) - Number(a.price) : Number(a.price) - Number(b.price))
     }
