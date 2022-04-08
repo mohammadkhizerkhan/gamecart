@@ -8,7 +8,7 @@ import { useCart } from "../store/data/CartContext";
 const addToCart = async (token, item,cartDispatch) => {
   try {
     const res = await axios.post(
-      "api/user/cart",
+      "/api/user/cart",
       {
         item,
       },

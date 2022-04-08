@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../store/data/DataContext";
@@ -21,34 +21,40 @@ function SingleProduct() {
   const { wishlistState, wishlistDispatch } = useWishlist();
   const { token } = useAuth();
   const { productId } = useParams();
-  const [product,setProduct]=useState({
-    title:"", img:"", price:"", original_price:"", rating:0, desc:""
-  })
-  const { title, img, price, original_price, rating, desc,id } = product;
-  console.log(wishlistState.wishlist)
-  console.log(cartState.cart)
-  
+
+  const [product, setProduct] = useState({
+    title: "",
+    img: "",
+    price: "",
+    original_price: "",
+    rating: 0,
+    desc: "",
+  });
+
+  const { title, img, price, original_price, rating, desc, id } = product;
+  // console.log(wishlistState.wishlist)
+  // console.log(cartState.cart)
+
   useEffect(() => {
-    (async ()=>{
+    (async () => {
       try {
-        const {data}=await axios.get(`/api/products/${productId}`)
-        setProduct(data.product)
+        const { data } = await axios.get(`/api/products/${productId}`);
+        setProduct(data.product);
       } catch (error) {
-        console.log("single page eroor",error)
+        console.log("single page eroor", error);
       }
     })();
-    
   }, [productId]);
-  
-  
+
   const addCartHandler = () => {
     if (token) {
       addToCart(token, product, cartDispatch);
+      console.log(token, "single page");
     } else {
       navigate("/login");
     }
   };
-  
+
   const addWishlistHandler = () => {
     if (token) {
       addToWishlist(token, product, wishlistDispatch);
@@ -56,7 +62,7 @@ function SingleProduct() {
       navigate("/login");
     }
   };
-  
+
   const removeWishlistHandler = () => {
     if (token) {
       removeFromWishlist(token, product, wishlistDispatch);
@@ -64,31 +70,32 @@ function SingleProduct() {
       navigate("/login");
     }
   };
-  
+
   return (
     <div className="single-product-cont">
-      <div class="card card-product">
-        <div class="card-img-body card-product-body">
-          <div class="card-product-img-cont">
-            <MdLocalOffer className="offer-icon" />
-            <span className="offer-percentage">
-              {Math.trunc(calculateDiscount(price, original_price))}%
-            </span>
-            <img src={img} alt="" class="card-img-bd img-responsive" />
-          </div>
-          <div class="card-body">
-            <header class="card-header">
-              <h4 className="text-center">{title}</h4>
-              <div class="price-container">
-                <h5>
-                  RATING: {rating} <span class="font-light">(200)</span>
-                </h5>
-              </div>
-              <div class="price-container">
-                <h3>PRICE: {price} &nbsp;</h3>
-              </div>
-            </header>
-          </div>
+      <div class="card-product-img-cont single-product-img-cont">
+        <MdLocalOffer className="offer-icon" />
+        <span className="offer-percentage">
+          {Math.trunc(calculateDiscount(price, original_price))}%
+        </span>
+        <img src={img} alt={title} class="img-responsive" />
+      </div>
+      <div className="single-product-details">
+        <div class="card-body single-card-body">
+          <header class="card-header text-left">
+            <h1>{title}</h1>
+            <div class="price-container">
+              <h5>
+                RATING: {rating} <span class="font-light">(200)</span>
+              </h5>
+            </div>
+            <div class="price-container">
+              <h3>PRICE: {price} &nbsp; </h3>
+            </div>
+          </header>
+          <p className="card-desc text-left">
+            {desc}
+          </p>
         </div>
         <div class="card-btn-container">
           {wishlistState.wishlist.some(

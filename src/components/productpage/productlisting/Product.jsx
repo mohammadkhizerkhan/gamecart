@@ -32,6 +32,7 @@ function Product({ item }) {
     if (token) {
       // navigate("/carts")
       addToCart(token, item, cartDispatch);
+      console.log(token,"product")
     } else {
       navigate("/login");
     }
@@ -79,7 +80,6 @@ function Product({ item }) {
             <div class="price-container">
               <h3>
                 PRICE: {price} &nbsp;
-      
               </h3>
             </div>
           </header>
