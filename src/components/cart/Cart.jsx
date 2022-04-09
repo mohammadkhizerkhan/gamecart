@@ -38,7 +38,11 @@ function Cart() {
 
   const removeCartHandler = (cartItem) => {
     removeFromCart(token, cartItem, cartDispatch);
-  };
+  }; 
+
+  const cartCheckout=()=>{
+    navigate("/checkout")
+  }
 
   useEffect(() => {
     const data = calculateTotalSummary(cartState.cart);
@@ -196,7 +200,7 @@ function Cart() {
                 You will save &#8377; {totalSummary.totalSavedAmount} on this
                 order
               </p>
-              <button class="btn cart-btn btn-s order-btn">PLACE ORDER</button>
+              <button class="btn cart-btn btn-s order-btn" onClick={()=>cartCheckout()}>CHECKOUT</button>
             </div>
           </>
         )}

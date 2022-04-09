@@ -1,0 +1,43 @@
+.checkout-div{
+    margin: 7rem auto;
+    width: 100%;
+    max-width: 95%;
+    color: var(--text-color);
+}
+
+.checkout-cont{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.address-cont{
+    width: 40%;
+    height: 10rem;
+    border: 1px solid white;
+    background-color: var(--card-bg-color);
+    border-radius: 4px;
+    box-shadow: var(--shadow-cart);
+    margin: 0 1rem;
+    padding-top: 10px;
+}
+
+
+.checkout-details{ 
+    height: 10rem;
+    width: 50%;
+    border: 1px solid white;
+    background-color: var(--card-bg-color);
+    border-radius: 4px;
+    box-shadow: var(--shadow-cart);
+}
+
+.address-select-cont{
+    padding-left: 2rem;
+}
+
+.address-label-radio{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

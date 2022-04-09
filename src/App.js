@@ -11,6 +11,7 @@ import SignUp from "./components/auth/SignUp";
 import Logout from "./components/auth/Logout";
 import Footer from "./containers/home/Footer";
 import SingleProduct from "./components/single-product/SingleProduct";
+import Checkout from "./components/checkout/Checkout";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/product/:productId" element={<SingleProduct/>}/>
         <Route path="/carts" element={<Cart/>}/>
         <Route path="/wishlist" element={<Wishlist/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/signup" element={<SignUp/>}/>
