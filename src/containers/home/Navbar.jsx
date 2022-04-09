@@ -18,7 +18,6 @@ function Navbar() {
 
   const clickSearchHandler=(e)=>{
     e.preventDefault();
-    setSearch("")
   }
   
   const searchHandler=(e)=>{
