@@ -2,6 +2,8 @@ import { ACTION_TYPE } from "../Actions";
 
 const ProductReducer = (state, action) => {
   switch (action.type) {
+    case ACTION_TYPE.SEARCH:
+      return {...state,search:action.payload}
     case ACTION_TYPE.SORT_TYPE:
       return { ...state, sort: action.payload };
     case ACTION_TYPE.CATEGORY:
