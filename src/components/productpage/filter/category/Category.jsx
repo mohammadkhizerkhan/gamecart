@@ -10,17 +10,16 @@ function Category() {
   // console.log(category)
 
   const [categories, setCategories] = useState([]);
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await axios.get("/api/categories");
-  //       setCategories((prev) => [...prev, ...response.data.categories]);
-  //       console.log(response)
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/categories");
+        setCategories((prev) => [...prev, ...response.data.categories]);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <div>

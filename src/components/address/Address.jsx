@@ -6,7 +6,7 @@ function Address({data}) {
         <div className="address-select-cont">
             <label htmlFor="" className='address-label-radio'>
             <input type="radio" className="address-input" />
-                <p>{name}</p>
+                <p className="font-bold">{name}</p>
             </label>
             <div className="address-details-cont text-left">
                 <p>{street},&nbsp; {city},&nbsp; {state},&nbsp; {zipCode}</p>

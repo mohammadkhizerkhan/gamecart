@@ -5,6 +5,13 @@
     color: var(--text-color);
 }
 
+.divider-line {
+    height: 1px;
+    width: 95%;
+    margin: 5px auto;
+    background-color: var(--line-color);
+}
+
 .checkout-cont{
     display: flex;
     flex-direction: row;
@@ -13,7 +20,7 @@
 
 .address-cont{
     width: 40%;
-    height: 10rem;
+    height: fit-content;
     border: 1px solid white;
     background-color: var(--card-bg-color);
     border-radius: 4px;
@@ -24,8 +31,9 @@
 
 
 .checkout-details{ 
-    height: 10rem;
+    height:fit-content;
     width: 50%;
+    padding: 1rem;
     border: 1px solid white;
     background-color: var(--card-bg-color);
     border-radius: 4px;
@@ -40,4 +48,23 @@
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+
+.checkout-item-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-headers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.checkout-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

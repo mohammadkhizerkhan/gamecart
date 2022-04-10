@@ -1,12 +1,13 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-
+import { useAuth } from "./AuthContext";
 const DataContext=createContext();
 
 
 const DataProvider=({children})=>{
+    const {token} =useAuth();
     const [products, setProducts] = useState([])
-    
+    const [addressData, setAddressData] = useState([])
     useEffect(() => {
         (async ()=>{
             try {
@@ -18,10 +19,25 @@ const DataProvider=({children})=>{
         })();
     }, [])
 
+    useEffect(() => {
+        (async () => {
+          try {
+            const res = await axios.get("api/user/address", {
+              headers: {
+                authorization: token,
+            },
+            });
+            setAddressData(prev=>[...prev,...res.data.address])
+        } catch (error) {
+            console.error("error in address get", error);
+        }
+    })();
+}, []);
+
     
 
     return (
-        <DataContext.Provider value={{data:products}}>
+        <DataContext.Provider value={{data:products,addressData}}>
             {children}
         </DataContext.Provider>
     )

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useCart } from "../../store/data/CartContext";
-import { useAuth } from "../../store/data/AuthContext";
-import { useWishlist } from "../../store/data/WishlistContext";
+import {useCart,useAuth,useWishlist,useOrder,useData} from "../../store/data"
 import { useNavigate } from "react-router-dom";
 import { ACTION_TYPE } from "../../store/Actions";
 import { removeFromCart, updateCartHandler } from "../../services/CartServices";
@@ -16,6 +14,8 @@ function Cart() {
   const { cartState, cartDispatch } = useCart();
   const { token } = useAuth();
   const { wishlistState, wishlistDispatch } = useWishlist();
+  const {orderDispatch}=useOrder();
+  const {addressData}=useData();
 
   const [totalSummary, setTotalSummary] = useState({
     totalOriginalPrice: 0,
@@ -40,15 +40,17 @@ function Cart() {
     removeFromCart(token, cartItem, cartDispatch);
   }; 
 
-  const cartCheckout=()=>{
-    navigate("/checkout")
-  }
-
+  
   useEffect(() => {
     const data = calculateTotalSummary(cartState.cart);
     setTotalSummary(data);
   }, [cartState.cart]);
-
+  
+  const cartCheckout=()=>{
+    navigate("/checkout")
+    orderDispatch({type:ACTION_TYPE.PRICE_DETAILS,payload:totalSummary})
+    // orderDispatch({type:ACTION_TYPE.ADDRESS_DETAILS,payload:addre})
+  }
   return (
     <div>
       <div class="cart-container">
@@ -176,7 +178,7 @@ function Cart() {
               <div class="divider-line"></div>
               <div class="charges">
                 <div class="price charges-amt">
-                  <p>Price(2 items)</p>
+                  <p>Price({cartState.cart.length} items)</p>
                   <h3>&#8377;{totalSummary.totalOriginalPrice}</h3>
                 </div>
                 <div class="discount charges-amt">

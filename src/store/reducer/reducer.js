@@ -54,4 +54,15 @@ const WishlistReducer = (state, action) => {
   }
 };
 
-export { ProductReducer, CartReducer,WishlistReducer };
+const orderReducer=(state,action)=>{
+  const {totalOriginalPrice,totalDiscount,totalDeliveryCharge,totalAmount,totalSavedAmount}=action.payload;
+  switch (action.type) {
+    case ACTION_TYPE.PRICE_DETAILS:
+      return {...state,orderDetails:{...state.orderDetails,totalOriginalPrice,totalDiscount,totalDeliveryCharge,totalAmount,totalSavedAmount}}
+  
+    default:
+      return state;
+  }
+}
+
+export { ProductReducer, CartReducer,WishlistReducer,orderReducer };

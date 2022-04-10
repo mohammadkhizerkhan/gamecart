@@ -32,7 +32,6 @@ function Product({ item }) {
     if (token) {
       // navigate("/carts")
       addToCart(token, item, cartDispatch);
-      console.log(token,"product")
     } else {
       navigate("/login");
     }
