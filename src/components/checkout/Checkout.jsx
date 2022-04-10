@@ -7,7 +7,9 @@ function Checkout() {
   const { addressData } = useData();
   const { cartState } = useCart();
   const { orderState } = useOrder();
-  const {city,country,mobile,_id,zipCode,state,name,street}=addressData[0];
+  
+  // const {city,country,mobile,_id,zipCode,state,name,street}=orderState.orderAddress;
+  // console.log(orderState.orderAddress)
   const {
     totalOriginalPrice,
     totalDiscount,
@@ -23,7 +25,7 @@ function Checkout() {
         <div className="address-cont">
           <h3 className="text-center">Select Address</h3>
           {addressData.map((addressData) => {
-            return <Address data={addressData} />;
+            return <Address  data={addressData} />;
           })}
         </div>
         <div className="checkout-details">
@@ -74,7 +76,7 @@ function Checkout() {
           <div className="divider-line"></div>
           <h3 className="text-center">Deliver To</h3>
           <div className="divider-line"></div>
-          <div className="checkout-address-details">
+          {/* <div className="checkout-address-details">
             <div className="address-select-cont">
               <p className="font-bold">{name}</p>
               <div className="address-details-cont text-left">
@@ -85,7 +87,7 @@ function Checkout() {
                 <p>Phone Number:{mobile}</p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="divider-line"></div>
           <button class="btn cart-btn btn-s order-btn font-bold">PLACE ORDER</button>
         </div>

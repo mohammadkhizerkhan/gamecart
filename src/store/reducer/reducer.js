@@ -3,7 +3,7 @@ import { ACTION_TYPE } from "../Actions";
 const ProductReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPE.SEARCH:
-      return {...state,search:action.payload}
+      return { ...state, search: action.payload };
     case ACTION_TYPE.SORT_TYPE:
       return { ...state, sort: action.payload };
     case ACTION_TYPE.CATEGORY:
@@ -34,10 +34,24 @@ const CartReducer = (state, action) => {
         cart: state.cart.filter((cart) => cart._id !== action.payload._id),
       };
     case ACTION_TYPE.DECR_QTY:
-      return {...state,cart:state.cart.filter(item=>item._id===action.payload._id?item.qty=action.payload.qty-1:item.qty)}   
+      return {
+        ...state,
+        cart: state.cart.filter((item) =>
+          item._id === action.payload._id
+            ? (item.qty = action.payload.qty - 1)
+            : item.qty
+        ),
+      };
     case ACTION_TYPE.INCR_QTY:
-      console.log("hi from ince")
-      return {...state,cart:state.cart.filter(item=>item._id===action.payload._id?item.qty=action.payload.qty+1:item.qty)}   
+      console.log("hi from ince");
+      return {
+        ...state,
+        cart: state.cart.filter((item) =>
+          item._id === action.payload._id
+            ? (item.qty = action.payload.qty + 1)
+            : item.qty
+        ),
+      };
     default:
       return state;
   }
@@ -46,23 +60,49 @@ const CartReducer = (state, action) => {
 const WishlistReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPE.ADD_TO_WISHLIST:
-      return {...state,wishlist:[...state.wishlist,{...action.payload}]}
+      return { ...state, wishlist: [...state.wishlist, { ...action.payload }] };
     case ACTION_TYPE.REMOVE_FROM_WISHLIST:
-      return {...state,wishlist:state.wishlist.filter((wishlist)=>wishlist._id!==action.payload._id)}
+      return {
+        ...state,
+        wishlist: state.wishlist.filter(
+          (wishlist) => wishlist._id !== action.payload._id
+        ),
+      };
     default:
       return state;
   }
 };
 
-const orderReducer=(state,action)=>{
-  const {totalOriginalPrice,totalDiscount,totalDeliveryCharge,totalAmount,totalSavedAmount}=action.payload;
+const orderReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPE.PRICE_DETAILS:
-      return {...state,orderDetails:{...state.orderDetails,totalOriginalPrice,totalDiscount,totalDeliveryCharge,totalAmount,totalSavedAmount}}
-  
+      const {
+        totalOriginalPrice,
+        totalDiscount,
+        totalDeliveryCharge,
+        totalAmount,
+        totalSavedAmount,
+      } = action.payload;
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          totalOriginalPrice,
+          totalDiscount,
+          totalDeliveryCharge,
+          totalAmount,
+          totalSavedAmount,
+        },
+      };
+    case ACTION_TYPE.ADDRESS_DETAILS:
+      const {
+        city,country,mobile,_id,zipCode,state:countryState,name,street
+      } = action.payload;
+      console.log({ ...state,orderAddress:{...state.orderAddress,city,country,mobile,_id,zipCode,name,street} });
+      // return { ...state, orderAddress: { ...state,orderAddress:{...state.orderAddress,city,country,mobile,_id,zipCode,name,street} } };
     default:
       return state;
   }
-}
+};
 
-export { ProductReducer, CartReducer,WishlistReducer,orderReducer };
+export { ProductReducer, CartReducer, WishlistReducer, orderReducer };

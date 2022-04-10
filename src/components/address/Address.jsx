@@ -1,11 +1,13 @@
 import React from 'react'
-
+import { ACTION_TYPE } from '../../store/Actions';
+import {useOrder} from "../../store/data"
 function Address({data}) {
+    const {orderDispatch}=useOrder();
     const {city,country,mobile,_id,zipCode,state,name,street}=data;
     return (
         <div className="address-select-cont">
             <label htmlFor="" className='address-label-radio'>
-            <input type="radio" className="address-input" />
+            <input type="radio" name='address' className="address-input" onChange={()=>orderDispatch({type:ACTION_TYPE.ADDRESS_DETAILS,payload:data})}/>
                 <p className="font-bold">{name}</p>
             </label>
             <div className="address-details-cont text-left">
