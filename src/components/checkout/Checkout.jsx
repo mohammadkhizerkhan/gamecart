@@ -7,10 +7,10 @@ function Checkout() {
   const { addressData } = useData();
   const { cartState } = useCart();
   const { orderState } = useOrder();
-  const {token,user}=useAuth();
-  console.log(token)
-  console.log(user)
-
+  const {
+    user: { firstName, lastName, email },
+    token
+  } = useAuth();
   const { city, country, mobile, _id, zipCode, state, name, street } =
     orderState.orderAddress;
   // console.log(orderState.orderAddress);
@@ -56,22 +56,35 @@ function Checkout() {
       description: "Thank you for shopping with us",
       image:
         "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647589272/shoemall/logo1_utxkw6.png",
-      handler: function (response) {
-        console.log(response);
-      },
-      prefill: {
-        name: currentUser.fullName,
-        email: currentUser.email,
-        contact: "6969691213",
-      },
-      notes: {},
-      theme: {
-        color: "#392F5A",
-      },
+        handler: function (response) {
+          const orderData = {
+            products: [...cartState.cart],
+            amount: totalAmount,
+            paymentId: response.razorpay_payment_id,
+            delivery: orderState.orderAddress,
+          };
+          // clearCart(dataDispatch, cart, token);
+          // dispatch({ type: ACTION_TYPE.RESET_PRICE });
+          // setMsg(true);
+        },
+        prefill: {
+          name: `${firstName} ${lastName}`,
+          email: email,
+          contact: "12356899",
+        },
+        theme: {
+          color: "#007bb5",
+        },
     };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
+
+  const orderPlace=()=>{
+    if(orderState?.orderDetails){
+      displayRazorpay();
+    }
+  }
 
   return (
     <div className="checkout-div">
@@ -148,7 +161,7 @@ function Checkout() {
           <div className="divider-line"></div>
           <button
             class="btn cart-btn btn-s order-btn font-bold"
-            onClick={() => orderPlace(totalAmount)}
+            onClick={() => orderPlace()}
           >
             PLACE ORDER
           </button>
