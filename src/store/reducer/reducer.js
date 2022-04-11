@@ -95,11 +95,11 @@ const orderReducer = (state, action) => {
         },
       };
     case ACTION_TYPE.ADDRESS_DETAILS:
-      const {
-        city,country,mobile,_id,zipCode,state:countryState,name,street
-      } = action.payload;
-      console.log({ ...state,orderAddress:{...state.orderAddress,city,country,mobile,_id,zipCode,name,street} });
-      // return { ...state, orderAddress: { ...state,orderAddress:{...state.orderAddress,city,country,mobile,_id,zipCode,name,street} } };
+      // const {
+      //   city,country,mobile,_id,zipCode,name,street
+      // } = action.payload;
+      // console.log({ ...state, orderAddress: { ...action.payload } });
+      return { ...state, orderAddress: { ...action.payload } };
     default:
       return state;
   }

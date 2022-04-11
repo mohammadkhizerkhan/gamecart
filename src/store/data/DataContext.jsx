@@ -20,18 +20,20 @@ const DataProvider=({children})=>{
     }, [])
 
     useEffect(() => {
-        (async () => {
-          try {
-            const res = await axios.get("api/user/address", {
-              headers: {
-                authorization: token,
-            },
-            });
-            setAddressData(prev=>[...prev,...res.data.address])
-        } catch (error) {
-            console.error("error in address get", error);
-        }
-    })();
+        
+            (async () => {
+              try {
+                const res = await axios.get("api/user/address", {
+                  headers: {
+                    authorization: token,
+                },
+                });
+                setAddressData(prev=>[...prev,...res.data.address])
+            } catch (error) {
+                console.error("error in address get", error);
+            }
+        })();
+        
 }, []);
 
     
