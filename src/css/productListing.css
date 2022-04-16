@@ -18,7 +18,7 @@
     top: 80px;
     height: 100%;
     overflow-y: auto;
-    border-right: 1px solid rgba(41, 133, 255, 0.8);
+    border-right: 1px solid var(--line-color);
 }
 
 .filter-header{
