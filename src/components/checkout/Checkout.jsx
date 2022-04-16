@@ -1,27 +1,29 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../../services/CartServices";
+import { ACTION_TYPE } from "../../store/Actions";
 import { useData, useCart, useOrder,useAuth } from "../../store/data";
 import Address from "../address/Address";
 
 function Checkout() {
+  const navigate=useNavigate();
   const { addressData } = useData();
-  const { cartState } = useCart();
-  const { orderState } = useOrder();
+  const { cartState,cartDispatch } = useCart();
+  const { orderState,orderDispatch } = useOrder();
   const {
     user: { firstName, lastName, email },
     token
   } = useAuth();
   const { city, country, mobile, _id, zipCode, state, name, street } =
     orderState.orderAddress;
-  // console.log(orderState.orderAddress);
-  // console.log(city,country)
   const {
     totalOriginalPrice,
     totalDiscount,
     totalDeliveryCharge,
     totalAmount,
     totalSavedAmount,
-  } = orderState.orderDetails;
+  } = orderState.orderPriceDetails;
 
   const loadScript = async (url) => {
     return new Promise((resolve) => {
@@ -58,14 +60,14 @@ function Checkout() {
         "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647589272/shoemall/logo1_utxkw6.png",
         handler: function (response) {
           const orderData = {
-            products: [...cartState.cart],
+            orderedProducts: [...cartState.cart],
             amount: totalAmount,
             paymentId: response.razorpay_payment_id,
             delivery: orderState.orderAddress,
           };
-          // clearCart(dataDispatch, cart, token);
-          // dispatch({ type: ACTION_TYPE.RESET_PRICE });
-          // setMsg(true);
+          orderDispatch({type:ACTION_TYPE.ORDER_COMPLETE,payload:orderData})
+          {orderData?.paymentId && navigate("/ordersummary")}
+          clearCart(token,cartState.cart,cartDispatch);
         },
         prefill: {
           name: `${firstName} ${lastName}`,
@@ -81,7 +83,7 @@ function Checkout() {
   };
 
   const orderPlace=()=>{
-    if(orderState?.orderDetails){
+    if(orderState?.orderPriceDetails){
       displayRazorpay();
     }
   }
@@ -144,7 +146,7 @@ function Checkout() {
           <div className="divider-line"></div>
           <h3 className="text-center">Deliver To</h3>
           <div className="divider-line"></div>
-          {orderState.orderAddress.city && (
+          {(orderState.orderAddress.city) ? (
             <div className="checkout-address-details">
               <div className="address-select-cont">
                 <p className="font-bold">{name}</p>
@@ -156,6 +158,10 @@ function Checkout() {
                   <p>Phone Number:{mobile}</p>
                 </div>
               </div>
+            </div>
+          ):(
+            <div className="address-select-cont">
+                <p className="font-bold">please select the address</p>
             </div>
           )}
           <div className="divider-line"></div>

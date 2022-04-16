@@ -58,13 +58,13 @@ export function makeServer({ environment = "development" } = {}) {
           address: [
             {
               _id: uuid(),
-              name: "Rutvik Umak",
-              street: "#1/4 , 100ft Ring Road, Karve Nagar",
-              city: "Bangalore",
-              state: "Maharashtra ",
+              name: "khizer khan",
+              street: "#1/4 , beside vivekananda college",
+              city: "pavagada",
+              state: "karnataka ",
               country: "India",
-              zipCode: "452412",
-              mobile: "123456789",
+              zipCode: "561202",
+              mobile: "55568462",
             },
           ],
         })

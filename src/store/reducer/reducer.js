@@ -33,6 +33,12 @@ const CartReducer = (state, action) => {
         ...state,
         cart: state.cart.filter((cart) => cart._id !== action.payload._id),
       };
+    case ACTION_TYPE.CLEAR_CART:
+      console.log(action.payload)
+      return {
+        ...state,
+        cart: action.payload,
+      };
     case ACTION_TYPE.DECR_QTY:
       return {
         ...state,
@@ -85,8 +91,8 @@ const orderReducer = (state, action) => {
       } = action.payload;
       return {
         ...state,
-        orderDetails: {
-          ...state.orderDetails,
+        orderPriceDetails: {
+          ...state.orderPriceDetails,
           totalOriginalPrice,
           totalDiscount,
           totalDeliveryCharge,
@@ -95,11 +101,9 @@ const orderReducer = (state, action) => {
         },
       };
     case ACTION_TYPE.ADDRESS_DETAILS:
-      // const {
-      //   city,country,mobile,_id,zipCode,name,street
-      // } = action.payload;
-      // console.log({ ...state, orderAddress: { ...action.payload } });
       return { ...state, orderAddress: { ...action.payload } };
+    case ACTION_TYPE.ORDER_COMPLETE:
+      return {...state,orderDetails:{...action.payload}}
     default:
       return state;
   }

@@ -2,13 +2,14 @@ const { createContext, useContext,useReducer } = require("react");
 import {orderReducer} from "../reducer/reducer"
 const initialState={
     orderAddress:{},
-    orderDetails:{
+    orderPriceDetails:{
         totalOriginalPrice:0,
         totalDiscount:0,
         totalDeliveryCharge:0,
         totalAmount:0,
         totalSavedAmount:0
-    }
+    },
+    orderDetails:{}
 }
 const OrderContext=createContext()
 
