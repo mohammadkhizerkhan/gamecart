@@ -30,7 +30,6 @@ function Product({ item }) {
 
   const addCartHandler = () => {
     if (token) {
-      // navigate("/carts")
       addToCart(token, item, cartDispatch);
     } else {
       navigate("/login");
@@ -40,7 +39,6 @@ function Product({ item }) {
 
   const addWishlistHandler = () => {
     if (token) {
-      // navigate("/wishlist")
       addToWishlist(token, item, wishlistDispatch);
     } else {
       navigate("/login");
@@ -49,7 +47,6 @@ function Product({ item }) {
 
   const removeWishlistHandler = () => {
     if (token) {
-      // navigate("/wishlist")
       removeFromWishlist(token, item, wishlistDispatch);
     } else {
       navigate("/login");
