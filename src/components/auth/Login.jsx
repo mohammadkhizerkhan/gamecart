@@ -18,14 +18,11 @@ function Login() {
 
   const loginHandler = (e) => {
     e.preventDefault();
-    if(form.email && form.password){
-      login(form.email,form.password)
-    }
-    else{
-      
+    if (form.email && form.password) {
+      login(form.email, form.password);
+    } else {
     }
   };
-
 
   return (
     <div>
@@ -54,30 +51,29 @@ function Login() {
               onChange={handleChange}
             />
           </label>
-
-            <button
-              onClick={() =>
-                setform((form) => ({
-                  ...form,
-                  email: "testGameCart@gmail.com",
-                  password: "test123",
-                }))
-              }
-              type="button"
-              class="btn-link formBtn"
-            >
-              Fill with Test Credentials
-            </button>
-          <label htmlFor="" class="input-label text-center">
-            <button
-              type="button"
-              class="btn-link formBtn"
-              onClick={() => navigate("/signup")}
-            >
-              Create New Account
-            </button>
-          </label>
-            <button onClick={(e) => loginHandler(e)}  class="btn-link formBtn">login</button>
+          <button
+            onClick={() =>
+              setform((form) => ({
+                ...form,
+                email: "testGameCart@gmail.com",
+                password: "test123",
+              }))
+            }
+            type="button"
+            class="btn-link formBtn"
+          >
+            Fill with Test Credentials
+          </button>
+          <button onClick={(e) => loginHandler(e)} class="btn-link formBtn">
+            login
+          </button>
+          <button
+            type="button"
+            class="btn-link formBtn"
+            onClick={() => navigate("/signup")}
+          >
+            Create New Account
+          </button>
         </form>
       </div>
     </div>

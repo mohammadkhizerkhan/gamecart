@@ -93,7 +93,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to="/logout" class="link">
+          <Link to={token?"/logout":"/login"} class="link">
             <i class="fas fa-user fa-icon"></i>
           </Link>
         </li>
