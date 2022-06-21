@@ -15,7 +15,6 @@ function Cart() {
   const { token } = useAuth();
   const { wishlistState, wishlistDispatch } = useWishlist();
   const {orderDispatch}=useOrder();
-  const {addressData}=useData();
 
   const [totalSummary, setTotalSummary] = useState({
     totalOriginalPrice: 0,

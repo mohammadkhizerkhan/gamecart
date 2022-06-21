@@ -65,10 +65,10 @@ function SignUp() {
                 <span class="inputs-title">I accept all Terms & Conditions</span>
             </label>
             <label htmlFor="" class="input-label text-center formBtn">
-                <button type='submit' href="" onClick={(e)=>signUpHandler(e)} class="btn-link formBtn">SIGN UP</button>
+                <button type='submit' onClick={(e)=>signUpHandler(e)} class="btn-link formBtn">SIGN UP</button>
             </label>
             <label htmlFor="" class="input-label text-center formBtn">
-                <button type='button' href="" onClick={()=>navigate("/login")} class="btn-link formBtn">Already Have An Account</button>
+                <button type='button' onClick={()=>navigate("/login")} class="btn-link formBtn">Already Have An Account</button>
             </label>
           </form>
     </div>

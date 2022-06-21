@@ -14,7 +14,7 @@
 }
 
 .logo-div {
-    width: 100%;
+    width: fit-content;
     height: 90px;
     cursor: pointer;
     display: flex;

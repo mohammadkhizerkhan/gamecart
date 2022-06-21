@@ -3,20 +3,20 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../../services/CartServices";
 import { ACTION_TYPE } from "../../store/Actions";
-import { useData, useCart, useOrder,useAuth } from "../../store/data";
+import { useData, useCart, useOrder, useAuth } from "../../store/data";
 import Address from "../address/Address";
 
 function Checkout() {
-  const navigate=useNavigate();
-  const { addressData } = useData();
-  const { cartState,cartDispatch } = useCart();
-  const { orderState,orderDispatch } = useOrder();
+  const navigate = useNavigate();
+  const { cartState, cartDispatch } = useCart();
+  const { orderState, orderDispatch } = useOrder();
+  const [addressData, setAddressData] = useState([]);
   const {
     user: { firstName, lastName, email },
-    token
+    token,
   } = useAuth();
   const { city, country, mobile, _id, zipCode, state, name, street } =
-    orderState.orderAddress;
+    orderState?.orderAddress;
   const {
     totalOriginalPrice,
     totalDiscount,
@@ -58,35 +58,53 @@ function Checkout() {
       description: "Thank you for shopping with us",
       image:
         "https://res.cloudinary.com/dgwzpbj4k/image/upload/v1647589272/shoemall/logo1_utxkw6.png",
-        handler: function (response) {
-          const orderData = {
-            orderedProducts: [...cartState.cart],
-            amount: totalAmount,
-            paymentId: response.razorpay_payment_id,
-            delivery: orderState.orderAddress,
-          };
-          orderDispatch({type:ACTION_TYPE.ORDER_COMPLETE,payload:orderData})
-          {orderData?.paymentId && navigate("/ordersummary")}
-          clearCart(token,cartState.cart,cartDispatch);
-        },
-        prefill: {
-          name: `${firstName} ${lastName}`,
-          email: email,
-          contact: "12356899",
-        },
-        theme: {
-          color: "#007bb5",
-        },
+      handler: function (response) {
+        const orderData = {
+          orderedProducts: [...cartState.cart],
+          amount: totalAmount,
+          paymentId: response.razorpay_payment_id,
+          delivery: orderState.orderAddress,
+        };
+        orderDispatch({ type: ACTION_TYPE.ORDER_COMPLETE, payload: orderData });
+        {
+          orderData?.paymentId && navigate("/ordersummary");
+        }
+        clearCart(token, cartState.cart, cartDispatch);
+      },
+      prefill: {
+        name: `${firstName} ${lastName}`,
+        email: email,
+        contact: "12356899",
+      },
+      theme: {
+        color: "#007bb5",
+      },
     };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
 
-  const orderPlace=()=>{
-    if(orderState?.orderPriceDetails){
+  const orderPlace = () => {
+    if (orderState?.orderPriceDetails) {
       displayRazorpay();
     }
-  }
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get("api/user/address", {
+          headers: {
+            authorization: token,
+          },
+        });
+        setAddressData((prev) => [...prev, ...res.data.address]);
+      } catch (error) {
+        console.error("error in address get", error);
+      }
+    })();
+  }, []);
+  console.log(addressData)
 
   return (
     <div className="checkout-div">
@@ -94,7 +112,7 @@ function Checkout() {
       <div className="checkout-cont">
         <div className="address-cont">
           <h3 className="text-center">Select Address</h3>
-          {addressData.map((addressData) => {
+          {addressData?.map((addressData) => {
             return <Address data={addressData} />;
           })}
         </div>
@@ -146,7 +164,7 @@ function Checkout() {
           <div className="divider-line"></div>
           <h3 className="text-center">Deliver To</h3>
           <div className="divider-line"></div>
-          {(orderState.orderAddress.city) ? (
+          {orderState.orderAddress.city ? (
             <div className="checkout-address-details">
               <div className="address-select-cont">
                 <p className="font-bold">{name}</p>
@@ -159,9 +177,9 @@ function Checkout() {
                 </div>
               </div>
             </div>
-          ):(
+          ) : (
             <div className="address-select-cont">
-                <p className="font-bold">please select the address</p>
+              <p className="font-bold">please select the address</p>
             </div>
           )}
           <div className="divider-line"></div>

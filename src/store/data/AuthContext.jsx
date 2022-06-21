@@ -1,4 +1,5 @@
 import { createContext, useContext, useState,useReducer } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {loginService,signUpService} from '../../services/AuthServices'
 
 // import { AuthReducer } from "../reducer/reducer";
@@ -6,11 +7,13 @@ import {loginService,signUpService} from '../../services/AuthServices'
 const AuthContext=createContext();
 
 const AuthProvider=({children})=>{
-    const localToken=JSON.parse(localStorage.getItem("login")) 
-    const localUser=JSON.parse(localStorage.getItem("user")) 
+    const localToken=JSON.parse(localStorage.getItem("login")) ||""
+    const localUser=JSON.parse(localStorage.getItem("user")) || ""
     const [token,setToken]=useState(localToken?.token)
     const [user,setUser]=useState(localUser?.user )
     const [error,setError]=useState("");
+    const navigate=useNavigate();
+    const location=useLocation();
 
     const login=async (email,password)=>{
         if(email && password !== ""){
@@ -22,6 +25,8 @@ const AuthProvider=({children})=>{
                     localStorage.setItem("user",JSON.stringify({user:foundUser}))
                     setToken(encodedToken)
                     setUser(foundUser)
+                    console.log(location?.state?.from?.pathname)
+                    navigate(location?.state?.from?.pathname||"/",{replace:true});
                 }
             } catch (err) {
                 console.log("error in login",err)
@@ -35,13 +40,12 @@ const AuthProvider=({children})=>{
             try {
                 const response=await signUpService(signUpData);
                 const {status,data:{encodedToken,createdUser}}=response;
-                console.log(encodedToken,createdUser)
-                console.log(response.data)
                 if(status===201){
                     localStorage.setItem("login",JSON.stringify({token:encodedToken}))
                     localStorage.setItem("user",JSON.stringify({user:createdUser}))
                     setToken(encodedToken)
                     setUser(createdUser)
+                    navigate(location?.state?.from?.pathname||"/",{replace:true});
                 }
             } catch (err) {
                 console.log("error in login",err)
