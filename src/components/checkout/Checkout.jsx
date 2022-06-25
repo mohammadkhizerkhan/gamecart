@@ -1,19 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAddress } from "../../services/AddressServices";
 import { clearCart } from "../../services/CartServices";
 import { ACTION_TYPE } from "../../store/Actions";
 import { useData, useCart, useOrder, useAuth } from "../../store/data";
 import Address from "../address/Address";
+import AddressModal from "../AddressModal";
 
 function Checkout() {
+  const [modalOpen, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const { cartState, cartDispatch } = useCart();
   const { orderState, orderDispatch } = useOrder();
-  const [addressData, setAddressData] = useState([]);
   const {
-    user: { firstName, lastName, email },
+    userData: { firstName, lastName, email, address },
     token,
+    userDispatch,
   } = useAuth();
   const { city, country, mobile, _id, zipCode, state, name, street } =
     orderState?.orderAddress;
@@ -91,20 +94,8 @@ function Checkout() {
   };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get("api/user/address", {
-          headers: {
-            authorization: token,
-          },
-        });
-        setAddressData((prev) => [...prev, ...res.data.address]);
-      } catch (error) {
-        console.error("error in address get", error);
-      }
-    })();
+    getAddress(token, userDispatch);
   }, []);
-  console.log(addressData)
 
   return (
     <div className="checkout-div">
@@ -112,9 +103,19 @@ function Checkout() {
       <div className="checkout-cont">
         <div className="address-cont">
           <h3 className="text-center">Select Address</h3>
-          {addressData?.map((addressData) => {
-            return <Address data={addressData} />;
+          {address?.map((addressData) => {
+            return (
+              <div className="address-select-cont">
+                <Address data={addressData} />
+              </div>
+            );
           })}
+          <button
+            class="btn cart-btn btn-s order-btn font-bold"
+            onClick={() => setOpenModal(true)}
+          >
+            ADD NEW ADDRESS
+          </button>
         </div>
         <div className="checkout-details">
           <div className="divider-line"></div>
@@ -191,6 +192,7 @@ function Checkout() {
           </button>
         </div>
       </div>
+      {modalOpen && <AddressModal onClose={() => setOpenModal(false)} />}
     </div>
   );
 }

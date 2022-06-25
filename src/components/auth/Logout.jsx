@@ -5,9 +5,8 @@ import Address from "../address/Address";
 import AddressModal from "../AddressModal";
 import { useState } from "react";
 function Logout() {
-  const { login, token, setToken, user, setUser } = useAuth();
+  const { login, token, setToken, user,userData, setUser } = useAuth();
   const [modalOpen,setOpenModal]=useState(false)
-  console.log(user);
   const navigate = useNavigate();
   const logOutHandler = () => {
     localStorage.removeItem("login");
@@ -17,6 +16,7 @@ function Logout() {
     setUser({});
     navigate("/");
   };
+
   return (
     <div className="profile">
       <div className="form-container profile-container">
@@ -28,11 +28,11 @@ function Logout() {
             <h2 className="text-underline">profile Details</h2>
             <p>
               <span className="font-bold">Name:</span>
-              {user.firstName}&nbsp;{user.lastName}
+              {userData?.firstName}&nbsp;{userData?.lastName}
             </p>
             <p>
               <span className="font-bold">Email:</span>
-              {user.email}
+              {userData?.email}
             </p>
           </div>
         </div>
@@ -49,8 +49,9 @@ function Logout() {
         <div className="user-container">
           <div className="user-details">
             <h1 className="text-underline">Address:</h1>
-            {user.address ? (
+            {userData?.address ? (
               user.address.map((addressData) => {
+                // console.log(addressData)
                 const { street, city, state, zipCode, country, mobile, name } =
                   addressData;
                 return (

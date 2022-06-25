@@ -5,7 +5,7 @@ function Address({ data }) {
   const { orderState, orderDispatch } = useOrder();
   const { city, country, mobile, _id, zipCode, state, name, street } = data;
   return (
-    <div className="address-select-cont">
+    <>
       <label htmlFor="" className="address-label-radio">
         <input
           type="radio"
@@ -25,7 +25,7 @@ function Address({ data }) {
         <p>{country}</p>
         <p>Phone Number:{mobile}</p>
       </div>
-    </div>
+    </>
   );
 }
 

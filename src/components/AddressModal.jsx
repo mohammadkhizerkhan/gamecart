@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { addAddress } from "../services/AddressServices";
 import { useAuth } from "../store/data";
 
 function AddressModal({onClose}) {
@@ -18,7 +19,7 @@ function AddressModal({onClose}) {
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
-        // addAddress(token,address,userDispatch)
+        addAddress(token,address,userDispatch)
         onClose();
     }
   return (
@@ -108,6 +109,7 @@ function AddressModal({onClose}) {
           <button
             type="button"
             className="btn cart-btn btn-s order-btn font-bold"
+            onClick={onClose}
           >
             cancel
           </button>

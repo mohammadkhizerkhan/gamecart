@@ -53,7 +53,6 @@ const AuthProvider=({children})=>{
     }
 
     const [userData, userDispatch] = useReducer(DataReducer, user)
-    console.log(userData)
     return(
         <AuthContext.Provider value={{token,login,signup,user,setToken,setUser,userData,userDispatch}}>
             {children}
