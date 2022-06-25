@@ -58,9 +58,9 @@ export function makeServer({ environment = "development" } = {}) {
           address: [
             {
               _id: uuid(),
-              name: "khizer khan",
-              street: "#1/4 , beside vivekananda college",
-              city: "pavagada",
+              name: "Test name",
+              street: "#1/4 , jayanagar vivekananda college",
+              city: "banglore",
               state: "karnataka ",
               country: "India",
               zipCode: "561202",

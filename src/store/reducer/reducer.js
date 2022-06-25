@@ -1,5 +1,19 @@
 import { ACTION_TYPE } from "../Actions";
 
+const initialState={
+  cart: [],
+  wishlist: [],
+  address: [],
+}
+
+const DataReducer=(state,action)=>{
+  switch (action.type) {
+    
+    default:
+      break;
+  }
+}
+
 const ProductReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPE.SEARCH:
@@ -109,4 +123,4 @@ const orderReducer = (state, action) => {
   }
 };
 
-export { ProductReducer, CartReducer, WishlistReducer, orderReducer };
+export { initialState,ProductReducer,DataReducer, CartReducer, WishlistReducer, orderReducer };
