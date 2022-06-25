@@ -6,17 +6,18 @@ function Address({ data }) {
   const { city, country, mobile, _id, zipCode, state, name, street } = data;
   return (
     <>
-      <label htmlFor="" className="address-label-radio">
-        <input
-          type="radio"
-          name="address"
-          className="address-input"
-          checked={orderState.orderAddress._id === _id}
-          onChange={() =>
-            orderDispatch({ type: ACTION_TYPE.ADDRESS_DETAILS, payload: data })
-          }
-        />
-        <p className="font-bold">{name}</p>
+      <label htmlFor={_id} className="address-label-radio">
+      <input
+        id={_id}
+        type="radio"
+        name="address"
+        className="address-input"
+        checked={orderState.orderAddress._id === _id}
+        onChange={() =>
+          orderDispatch({ type: ACTION_TYPE.ADDRESS_DETAILS, payload: data })
+        }
+      />
+        {name}
       </label>
       <div className="address-details-cont text-left">
         <p>
