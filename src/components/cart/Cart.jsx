@@ -48,7 +48,6 @@ function Cart() {
   const cartCheckout=()=>{
     navigate("/checkout")
     orderDispatch({type:ACTION_TYPE.PRICE_DETAILS,payload:totalSummary})
-    // orderDispatch({type:ACTION_TYPE.ADDRESS_DETAILS,payload:addre})
   }
   return (
     <div>

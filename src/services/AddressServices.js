@@ -32,6 +32,18 @@ const getAddress=async(token,userDispatch)=>{
         console.error("error in address get", error);
       }
 }
+const deleteAddress=async(token,_id,userDispatch)=>{
+    try {
+        const res = await axios.delete(`api/user/address/${_id}`, {
+          headers: {
+            authorization: token,
+          },
+        });
+        console.log(res.data.address)
+      } catch (error) {
+        console.error("error in address delete", error);
+      }
+}
 
 
-export { addAddress,getAddress };
+export { addAddress,getAddress,deleteAddress };
