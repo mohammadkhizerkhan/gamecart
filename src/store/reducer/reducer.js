@@ -10,6 +10,8 @@ const DataReducer=(state,action)=>{
   switch (action.type) {
     case ACTION_TYPE.ADD_ADDRESS:
       return {...state,address:action.payload}
+    case ACTION_TYPE.DELETE_ADDRESS:
+      return {...state,address:action.payload}
     default:
       break;
   }

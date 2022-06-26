@@ -40,6 +40,7 @@ const deleteAddress=async(token,_id,userDispatch)=>{
           },
         });
         console.log(res.data.address)
+        userDispatch({type:ACTION_TYPE.DELETE_ADDRESS,payload:res.data.address})
       } catch (error) {
         console.error("error in address delete", error);
       }
