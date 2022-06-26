@@ -186,6 +186,7 @@ function Checkout() {
           <div className="divider-line"></div>
           <button
             class="btn cart-btn btn-s order-btn font-bold"
+            disabled={orderState.orderAddress.city?false:true}
             onClick={() => orderPlace()}
           >
             PLACE ORDER
