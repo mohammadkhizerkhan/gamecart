@@ -12,6 +12,8 @@ const DataReducer=(state,action)=>{
       return {...state,address:action.payload}
     case ACTION_TYPE.DELETE_ADDRESS:
       return {...state,address:action.payload}
+    case ACTION_TYPE.EDIT_ADDRESS:
+      return {...state,address:action.payload}
     default:
       break;
   }

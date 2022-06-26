@@ -3,7 +3,7 @@ import { deleteAddress } from "../../services/AddressServices";
 import { ACTION_TYPE } from "../../store/Actions";
 import { useAuth, useOrder } from "../../store/data";
 function Address({ data }) {
-  const { token, userDispatch } = useAuth();
+  const { token, userDispatch, setEditDetails, setOpenModal  } = useAuth();
   const { orderState, orderDispatch } = useOrder();
   const { city, country, mobile, _id, zipCode, state, name, street } = data;
   return (
@@ -37,7 +37,20 @@ function Address({ data }) {
         className="btn btn-icon"
         onClick={() => deleteAddress(token, _id, userDispatch)}
       >
-        <i class="far fa-trash-alt fa-icon"></i>
+        <i class="far fa-trash-alt fa-delete-color"></i>
+      </button>
+      <button
+        className="btn btn-icon btn-address-icon"
+        onClick={() => {
+          setEditDetails((prev) => ({
+            ...prev,
+            isEdit: true,
+            editAddressData: { ...data },
+          }));
+          setOpenModal(true);
+        }}
+      >
+        <i class="far fa-edit fa-edit-color"></i>
       </button>
     </div>
   );

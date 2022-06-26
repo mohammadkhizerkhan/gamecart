@@ -13,6 +13,8 @@ const AuthProvider=({children})=>{
     const [error,setError]=useState("");
     const navigate=useNavigate();
     const location=useLocation();
+    const [editDetails, setEditDetails] = useState({isEdit:false,editAddressData:{}});
+    const [modalOpen, setOpenModal] = useState(false);
 
     const login=async (email,password)=>{
         if(email && password !== ""){
@@ -54,7 +56,7 @@ const AuthProvider=({children})=>{
 
     const [userData, userDispatch] = useReducer(DataReducer, user)
     return(
-        <AuthContext.Provider value={{token,login,signup,user,setToken,setUser,userData,userDispatch}}>
+        <AuthContext.Provider value={{token,login,signup,user,setToken,setUser,userData,userDispatch,editDetails, setEditDetails,modalOpen, setOpenModal}}>
             {children}
         </AuthContext.Provider>
     )

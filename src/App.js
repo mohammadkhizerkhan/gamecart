@@ -15,9 +15,18 @@ import Checkout from "./components/checkout/Checkout";
 import OrderSummary from "./components/ordersummary/OrderSummary";
 import { RequireAuth } from "./components/RequireAuth";
 import { AuthRoute } from "./components/AuthRoute";
+import { useAuth } from "./store/data";
+import AddressModal from "./components/AddressModal";
 function App() {
+  const {modalOpen,editDetails,setOpenModal}=useAuth();
   return (
     <div className="App">
+      {modalOpen && (
+        <AddressModal
+          editDetails={editDetails}
+          onClose={() => setOpenModal(false)}
+        />
+      )}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

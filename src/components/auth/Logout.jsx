@@ -6,11 +6,9 @@ import AddressModal from "../AddressModal";
 import { useState } from "react";
 import { deleteAddress } from "../../services/AddressServices";
 function Logout() {
-  const { login, token, setToken, user, userData, setUser, userDispatch } =
+  const {setToken, userData, setUser, setOpenModal } =
     useAuth();
   const [address, setAddress] = useState([]);
-  const [isEdit,setIsEdit]=useState(false)
-  const [modalOpen, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const logOutHandler = () => {
     localStorage.removeItem("login");
@@ -23,7 +21,6 @@ function Logout() {
   useEffect(() => {
     setAddress((prev) => [...userData.address]);
   }, [userData]);
-  // console.log(address)
 
   return (
     <div className="profile">
@@ -57,47 +54,11 @@ function Logout() {
         <div className="user-container">
           <div className="user-details">
             <h1 className="text-underline">Address:</h1>
-            {console.log(address)}
             {address ? (
               address.map((addressData) => {
-                const {
-                  street,
-                  city,
-                  state,
-                  zipCode,
-                  country,
-                  mobile,
-                  name,
-                  _id,
-                } = addressData;
                 return (
                   <>
-                    <div className="address-details-cont text-left flex-row">
-                      <div>
-                        <h3>{name}</h3>
-                        <p>
-                          {street},&nbsp; {city},&nbsp; {state},&nbsp; {zipCode}
-                        </p>
-                        <p>{country}</p>
-                        <p>Phone Number:{mobile}</p>
-                      </div>
-                      <button
-                        className="btn btn-icon"
-                        onClick={() =>
-                          deleteAddress(token, _id, userDispatch)
-                        }
-                      >
-                        <i class="far fa-trash-alt fa-delete-color"></i>
-                      </button>
-                      <button
-                        className="btn btn-icon"
-                        onClick={() =>
-                          deleteAddress(token, _id, userDispatch)
-                        }
-                      >
-                        <i class="far fa-edit fa-icon"></i>
-                      </button>
-                    </div>
+                    <Address data={addressData}/>
                     <div className="divider-line"></div>
                   </>
                 );
@@ -114,7 +75,6 @@ function Logout() {
           </div>
         </div>
       </div>
-      {modalOpen && <AddressModal onClose={() => setOpenModal(false)} />}
     </div>
   );
 }

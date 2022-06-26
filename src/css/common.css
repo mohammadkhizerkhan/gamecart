@@ -67,9 +67,8 @@ body{
     color: tomato;
 }
 .fa-edit-color{
-    color: var(--shadow-product);
+    color: #2badec;
 }
-
 
 .fa-icon{
     font-size: 1.5rem;

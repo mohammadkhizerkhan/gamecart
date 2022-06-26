@@ -9,7 +9,7 @@ import Address from "../address/Address";
 import AddressModal from "../AddressModal";
 
 function Checkout() {
-  const [modalOpen, setOpenModal] = useState(false);
+  
   const navigate = useNavigate();
   const { cartState, cartDispatch } = useCart();
   const { orderState, orderDispatch } = useOrder();
@@ -17,6 +17,7 @@ function Checkout() {
     userData: { firstName, lastName, email, address },
     token,
     userDispatch,
+    setOpenModal
   } = useAuth();
   const { city, country, mobile, _id, zipCode, state, name, street } =
     orderState?.orderAddress;
@@ -193,7 +194,6 @@ function Checkout() {
           </button>
         </div>
       </div>
-      {modalOpen && <AddressModal onClose={() => setOpenModal(false)} />}
     </div>
   );
 }
