@@ -37,16 +37,7 @@ export const signupHandler = function (schema, request) {
       ...rest,
       cart: [],
       wishlist: [],
-      address:[{
-        _id: uuid(),
-        name: "test address",
-        street: "#1/4 , laal bagh",
-        city: "banglore",
-        state: "karnataka ",
-        country: "India",
-        zipCode: "561202",
-        mobile: "55568462",
-      },]
+      address:[]
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);

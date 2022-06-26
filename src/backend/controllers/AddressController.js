@@ -43,6 +43,7 @@ export const getAddressHandler = function (schema, request) {
 
 export const addAddressHandler = function (schema, request) {
   const userId = requiresAuth.call(this, request);
+
   try {
     if (!userId) {
       new Response(

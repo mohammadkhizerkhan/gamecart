@@ -26,7 +26,6 @@ const AuthProvider=({children})=>{
                     localStorage.setItem("user",JSON.stringify({user:foundUser}))
                     setToken(encodedToken)
                     setUser(foundUser)
-                    console.log(location?.state?.from?.pathname)
                     navigate(location?.state?.from?.pathname||"/",{replace:true});
                 }
             } catch (err) {
@@ -53,8 +52,13 @@ const AuthProvider=({children})=>{
                 setError(err);
             }
     }
-
-    const [userData, userDispatch] = useReducer(DataReducer, user)
+    
+    const [userData, userDispatch] = useReducer(DataReducer, {
+        cart:[],
+        wishlist:[],
+        address:[]
+    })
+    
     return(
         <AuthContext.Provider value={{token,login,signup,user,setToken,setUser,userData,userDispatch,editDetails, setEditDetails,modalOpen, setOpenModal}}>
             {children}

@@ -5,7 +5,6 @@ import { useAuth } from "../store/data";
 
 function AddressModal({ onClose, editDetails }) {
   const { userData, userDispatch, token,setEditDetails } = useAuth();
-  console.log(editDetails)
   const [address, setAddress] = useState({
     name: "",
     street: "",
@@ -32,6 +31,7 @@ function AddressModal({ onClose, editDetails }) {
       zipCode: "",
       mobile: "",
     });
+    setEditDetails(prev=>({...prev,isEdit:false,editAddressData:{}}))
     onClose();
   };
 

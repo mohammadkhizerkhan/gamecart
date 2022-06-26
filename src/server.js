@@ -56,16 +56,7 @@ export function makeServer({ environment = "development" } = {}) {
           cart: [],
           wishlist: [],
           address: [
-            {
-              _id: uuid(),
-              name: "Test name",
-              street: "#1/4 , jayanagar vivekananda college",
-              city: "banglore",
-              state: "karnataka ",
-              country: "India",
-              zipCode: "561202",
-              mobile: "55568462",
-            },
+            
           ],
         })
       );

@@ -6,8 +6,8 @@ function SignUp() {
   const { signup, token } = useAuth();
   const navigate = useNavigate();
   const [form, setform] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -19,12 +19,12 @@ function SignUp() {
 
   const signUpHandler = (e) => {
     e.preventDefault();
-    if (form.firstname && form.lastname && form.email && form.password) {
+    if (form.firstName && form.lastName && form.email && form.password) {
       signup(form);
     }
     setform({
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     });
@@ -47,8 +47,8 @@ function SignUp() {
               type="text"
               placeholder="Enter your first name here"
               class="input"
-              value={form.firstname}
-              name="firstname"
+              value={form.firstName}
+              name="firstName"
               onChange={handleChange}
             />
           </label>
@@ -58,8 +58,8 @@ function SignUp() {
               type="text"
               placeholder="Enter your last name here"
               class="input"
-              value={form.lastname}
-              name="lastname"
+              value={form.lastName}
+              name="lastName"
               onChange={handleChange}
             />
           </label>

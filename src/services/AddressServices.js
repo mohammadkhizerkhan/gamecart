@@ -16,7 +16,7 @@ const addAddress = async (token, address, userDispatch) => {
     );
     userDispatch({ type: ACTION_TYPE.ADD_ADDRESS, payload: res.data.address });
   } catch (error) {
-    console.error("error in address post", error);
+    console.error("error in address post", error.message);
   }
 };
 
