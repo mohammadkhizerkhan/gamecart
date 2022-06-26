@@ -63,8 +63,11 @@ body{
 .btn{
     cursor: pointer;
 }
-.btn-icon{
+.fa-delete-color{
     color: tomato;
+}
+.fa-edit-color{
+    color: var(--shadow-product);
 }
 
 

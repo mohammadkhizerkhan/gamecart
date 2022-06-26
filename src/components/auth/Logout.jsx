@@ -9,6 +9,7 @@ function Logout() {
   const { login, token, setToken, user, userData, setUser, userDispatch } =
     useAuth();
   const [address, setAddress] = useState([]);
+  const [isEdit,setIsEdit]=useState(false)
   const [modalOpen, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const logOutHandler = () => {
@@ -86,7 +87,15 @@ function Logout() {
                           deleteAddress(token, _id, userDispatch)
                         }
                       >
-                        <i class="far fa-trash-alt fa-icon"></i>
+                        <i class="far fa-trash-alt fa-delete-color"></i>
+                      </button>
+                      <button
+                        className="btn btn-icon"
+                        onClick={() =>
+                          deleteAddress(token, _id, userDispatch)
+                        }
+                      >
+                        <i class="far fa-edit fa-icon"></i>
                       </button>
                     </div>
                     <div className="divider-line"></div>
