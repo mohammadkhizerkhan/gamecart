@@ -56,16 +56,7 @@ export function makeServer({ environment = "development" } = {}) {
           cart: [],
           wishlist: [],
           address: [
-            {
-              _id: uuid(),
-              name: "khizer khan",
-              street: "#1/4 , beside vivekananda college",
-              city: "pavagada",
-              state: "karnataka ",
-              country: "India",
-              zipCode: "561202",
-              mobile: "55568462",
-            },
+            
           ],
         })
       );

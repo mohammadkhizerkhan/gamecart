@@ -1,8 +1,7 @@
 import { createContext, useContext, useState,useReducer } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {loginService,signUpService} from '../../services/AuthServices'
-
-// import { AuthReducer } from "../reducer/reducer";
+import { initialState,DataReducer } from "../reducer/reducer";
 
 const AuthContext=createContext();
 
@@ -10,10 +9,12 @@ const AuthProvider=({children})=>{
     const localToken=JSON.parse(localStorage.getItem("login")) ||""
     const localUser=JSON.parse(localStorage.getItem("user")) || ""
     const [token,setToken]=useState(localToken?.token)
-    const [user,setUser]=useState(localUser?.user )
+    const [user,setUser]=useState(localUser?.user)
     const [error,setError]=useState("");
     const navigate=useNavigate();
     const location=useLocation();
+    const [editDetails, setEditDetails] = useState({isEdit:false,editAddressData:{}});
+    const [modalOpen, setOpenModal] = useState(false);
 
     const login=async (email,password)=>{
         if(email && password !== ""){
@@ -25,7 +26,6 @@ const AuthProvider=({children})=>{
                     localStorage.setItem("user",JSON.stringify({user:foundUser}))
                     setToken(encodedToken)
                     setUser(foundUser)
-                    console.log(location?.state?.from?.pathname)
                     navigate(location?.state?.from?.pathname||"/",{replace:true});
                 }
             } catch (err) {
@@ -52,9 +52,15 @@ const AuthProvider=({children})=>{
                 setError(err);
             }
     }
-
+    
+    const [userData, userDispatch] = useReducer(DataReducer, {
+        cart:[],
+        wishlist:[],
+        address:[]
+    })
+    
     return(
-        <AuthContext.Provider value={{token,login,signup,user,setToken,setUser}}>
+        <AuthContext.Provider value={{token,login,signup,user,setToken,setUser,userData,userDispatch,editDetails, setEditDetails,modalOpen, setOpenModal}}>
             {children}
         </AuthContext.Provider>
     )

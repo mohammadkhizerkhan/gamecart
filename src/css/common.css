@@ -54,6 +54,21 @@ body{
     background-color: rgb(2 2 16);
 }
 
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn{
+    cursor: pointer;
+}
+.fa-delete-color{
+    color: tomato;
+}
+.fa-edit-color{
+    color: #2badec;
+}
 
 .fa-icon{
     font-size: 1.5rem;

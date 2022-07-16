@@ -1,19 +1,15 @@
-import axios from "axios"
+import axios from "axios";
 
-const loginService=(email,password)=>{
-    return axios.post("api/auth/login",{
-        email:email,
-        password:password
-    })
-}
-const signUpService=(signUpData)=>{
-    const {firstname,lastname,email,password}=signUpData;
-    return axios.post("/api/auth/signup",{
-        firstname:firstname,
-        lastname:lastname,
-        email:email,
-        password:password
-    })
-}
+const loginService = (email, password) => {
+  return axios.post("api/auth/login", {
+    email: email,
+    password: password,
+  });
+};
+const signUpService = (signUpData) => {
+  return axios.post("/api/auth/signup", {
+    ...signUpData,
+  });
+};
 
-export {loginService,signUpService}
+export { loginService, signUpService };
